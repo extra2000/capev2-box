@@ -1,0 +1,3 @@
+[submodule "capev2/CAPEv2"]
+	path = capev2/CAPEv2
+	url = https://github.com/extra2000/CAPEv2.git
