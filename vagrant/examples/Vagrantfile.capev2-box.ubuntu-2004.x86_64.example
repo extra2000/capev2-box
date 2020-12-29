@@ -1,0 +1,50 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vagrant.plugins = ["vagrant-reload", "vagrant-scp"]
+
+  config.vm.define "capev2-box" do |capev2_box|
+    capev2_box.vm.box = "generic/ubuntu2004"
+    capev2_box.vm.hostname = "capev2-box"
+
+    capev2_box.vm.provider "libvirt" do |v, override|
+      override.vagrant.plugins = config.vagrant.plugins + ["vagrant-libvirt"]
+      v.cpus = "4"
+      v.cputopology sockets: "1", cores: "4", threads: "1"
+      v.memory = "4096"
+      v.disk_bus = "virtio"
+      v.nic_model_type = "virtio-net-pci"
+      v.nested = true
+      v.cpu_mode = "host-model"
+      v.cpu_fallback = "allow"
+      v.graphics_type = "vnc"
+      v.kvm_hidden = "false"
+      v.machine_type = "pc-i440fx-2.11"
+      v.machine_arch = "x86_64"
+      v.autostart = false
+    end
+
+    capev2_box.vm.provider "virtualbox" do |v, override|
+      override.vagrant.plugins = config.vagrant.plugins + ["vagrant-vbguest"]
+      override.vbguest.auto_update = false
+      override.vm.network "private_network", type: "dhcp"
+      v.name = "capev2-box"
+      v.gui = false
+      v.cpus = "4"
+      v.memory = "4096"
+      v.linked_clone = true
+      v.customize ["modifyvm", :id, '--natdnshostresolver1', 'on']
+      v.customize ['modifyvm', :id, '--graphicscontroller', 'vmsvga']
+      v.customize ['modifyvm', :id, '--audio', 'none']
+      v.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
+
+      override.vm.provision 'shell', run: 'once', inline: 'apt update && apt install -y avahi-utils libnss-mdns && systemctl start avahi-daemon && systemctl enable avahi-daemon', privileged: true
+    end
+
+    capev2_box.vm.synced_folder "capev2/CAPEv2", "/opt/CAPEv2-source", type: "rsync"
+    capev2_box.vm.synced_folder "capev2/doomedraven-tools", "/opt/doomedraven-tools", type: "rsync"
+    capev2_box.vm.synced_folder '.', '/vagrant', disabled: true
+  end
+end
