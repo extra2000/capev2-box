@@ -1,0 +1,48 @@
+{
+  "branches": [
+    {"name": "master"},
+    {"name": "rc", "channel": "rc", "prerelease": "rc"},
+    {"name": "beta", "channel": "beta", "prerelease": "beta"},
+    {"name": "alpha", "channel": "alpha", "prerelease": "alpha"}
+  ],
+  "plugins": [
+    ["@semantic-release/commit-analyzer", {
+      "preset": "angular",
+      "releaseRules": [
+        {"breaking": "true", "release": "major"},
+        {"type": "docs", "release": "patch"},
+        {"type": "refactor", "release": "patch"},
+        {"type": "style", "release": "patch"},
+        {"type": "chore", "release": "patch"},
+        {"type": "perf", "release": "patch"},
+        {"type": "ci", "release": "patch"}
+      ]
+    }],
+    ['@semantic-release/changelog', {
+      changelogFile: 'CHANGELOG.md',
+      changelogTitle: '# Changelog',
+    }],
+    ["@semantic-release/git", {
+      "assets": ["CHANGELOG.md", "VERSION.txt"]
+    }],
+    ["@semantic-release/release-notes-generator", {
+      "preset": "conventionalcommits",
+      "presetConfig": {
+        "types": [
+          {"type": "feat", "section": "Features", "hidden": false},
+          {"type": "fix", "section": "Fixes", "hidden": false},
+          {"type": "docs", "section": "Documentations", "hidden": false},
+          {"type": "refactor", "section": "Code Refactoring", "hidden": false},
+          {"type": "style", "section": "Styles", "hidden": false},
+          {"type": "chore", "section": "Maintenance", "hidden": false},
+          {"type": "perf", "section": "Performance Improvements", "hidden": false},
+          {"type": "ci", "section": "Continuous Integrations", "hidden": false}
+        ]
+      }
+    }],
+    "@semantic-release/github",
+    ["@semantic-release/exec", {
+      "generateNotesCmd": "echo ${nextRelease.version} > VERSION.txt"
+    }]
+  ]
+}
