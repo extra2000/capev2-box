@@ -1,3 +1,6 @@
 [submodule "capev2/CAPEv2"]
 	path = capev2/CAPEv2
 	url = https://github.com/extra2000/CAPEv2.git
+[submodule "capev2/doomedraven-tools"]
+	path = capev2/doomedraven-tools
+	url = https://github.com/extra2000/doomedraven-tools.git
