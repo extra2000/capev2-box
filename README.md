@@ -61,6 +61,8 @@ After finished installations, `cuckoo1` VM will shutdown. Execute the following 
 $ sudo virsh start cuckoo1
 ```
 
+Then, shutdown `cuckoo1`.
+
 
 ## Static DHCP Network for Guests
 
@@ -93,6 +95,14 @@ $ sudo virsh net-start default
 
 Set the following values in `/opt/CAPEv2/conf/cuckoo.conf`:
 ```
+[cuckoo]
+delete_original = on
+delete_bin_copy = on
+reschedule = on
+max_analysis_count = 1
+max_machines_count = 1
+max_vmstartup_count = 1
+
 [resultserver]
 ip = 192.168.122.1
 ```
@@ -105,20 +115,38 @@ snapshot = clean
 resultserver_ip = 192.168.122.1
 ```
 
+Disable rate limiting `/opt/CAPEv2/conf/api.conf`:
+```
+[api]
+ratelimit = no
+```
+
+Enable Malware scoring in `/opt/CAPEv2/conf/web.conf`:
+```
+[malscore]
+enabled = yes
+```
+
 To disable VirusTotal, set the following value in `/opt/CAPEv2/conf/processing.conf`:
 ```
 [virustotal]
 enabled = no
 ```
 
-Finally, restart `cape` service:
+Finally, restart all `cape` services:
 ```
-$ sudo systemctl restart cape.service
+$ sudo systemctl restart cape-processor.service cape-rooter.service cape-web.service cape.service
 ```
 
 
 ## CAPEv2 Agent Installations
 
+Start `cuckoo1` VM:
+```
+$ sudo virsh start cuckoo1
+```
+
+Then, setup the following prerequisites:
 1. Install Firefox
 1. Install Python 3.6.8 (32-bit). During installation, enable `Add Python 3.6 to PATH`.
 1. Shutdown
