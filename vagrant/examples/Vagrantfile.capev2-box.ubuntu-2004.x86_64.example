@@ -43,7 +43,7 @@ Vagrant.configure("2") do |config|
       override.vm.provision 'shell', run: 'once', inline: 'apt update && apt install -y avahi-utils libnss-mdns && systemctl start avahi-daemon && systemctl enable avahi-daemon', privileged: true
     end
 
-    capev2_box.vm.synced_folder "capev2/CAPEv2", "/opt/CAPEv2-source", type: "rsync"
+    capev2_box.vm.synced_folder "capev2/CAPEv2", "/opt/CAPEv2-source", type: "rsync", rsync__args: ["--verbose", "--archive", "--delete", "-z"]
     capev2_box.vm.synced_folder "capev2/doomedraven-tools", "/opt/doomedraven-tools", type: "rsync"
     capev2_box.vm.synced_folder '.', '/vagrant', disabled: true
   end
