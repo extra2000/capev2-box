@@ -37,6 +37,7 @@ $ vagrant reload
 $ vagrant ssh capev2-box
 $ sudo cp -rv /opt/CAPEv2{-source,}
 $ sudo bash /opt/doomedraven-tools/Sandbox/cape2.sh base cape
+$ sudo systemctl set-default multi-user.target
 $ exit
 $ vagrant reload
 ```
