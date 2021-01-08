@@ -65,6 +65,18 @@ $ sudo virsh start cuckoo1
 Then, shutdown `cuckoo1`.
 
 
+## Memory Lock
+
+Add the following lines in `/etc/security/limits.conf` to limit memory usage used by user `cape`:
+```
+# Lock max 1Gb
+cape soft memlock 1048576
+cape hard memlock 1048576
+```
+
+Then, reboot host or execute `$ vagrant reload capev2-box`.
+
+
 ## Static DHCP Network for Guests
 
 Make sure to shutdown all guests. Execute `$ sudo virsh net-edit default` and add `<host mac='52:54:00:7e:3a:8e' ip='192.168.122.2'/>` line inside `<dhcp></dhcp>`. For example:
