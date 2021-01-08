@@ -218,3 +218,13 @@ However, the VM will not have Internet access.
 ## Notes
 
 To monitor VM, you can use VNC.
+
+
+## Maintenance
+
+To cleanup old data:
+```
+$ cd /opt/CAPEv2/utils
+$ sudo python3 cleaners.py --delete-older-than-days 7
+$ sudo systemctl restart cape-processor.service cape-rooter.service cape-web.service cape.service
+```
