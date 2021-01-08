@@ -228,3 +228,40 @@ $ cd /opt/CAPEv2/utils
 $ sudo python3 cleaners.py --delete-older-than-days 7
 $ sudo systemctl restart cape-processor.service cape-rooter.service cape-web.service cape.service
 ```
+
+
+## Increase Vagrant Disk Size
+
+This Section is applicable for Linux host and Libvirt provider. The following commands should be executed on the Vagrant host.
+
+Make sure to shutdown the Vagrant box:
+```
+$ vagrant halt capev2-box
+```
+
+Expand the Vagrant box storage with extra 200G of the current size:
+```
+$ sudo qemu-img resize /path/to/capev2-box_capev2-box.img +200G
+```
+
+Load `nbd` module and bind the image to host:
+```
+$ sudo modprobe nbd max_part=8
+$ sudo qemu-nbd --connect=/dev/nbd0 /path/to/capev2-box_capev2-box.img
+```
+
+Check which partition to resize via `parted` `print` command. In this case, it is `/dev/nbd0p3`. Note that if `parted` detects that the drive has extra space and `parted` able to fix it, do fix it:
+```
+$ sudo parted /dev/nbd0 print
+$ sudo e2fsck -f /dev/nbd0p3
+$ sudo parted /dev/nbd0 print
+$ sudo parted /dev/nbd0 -- resizepart 3 -1
+$ sudo resize2fs /dev/nbd0p3
+$ sudo e2fsck -f /dev/nbd0p3
+$ sudo parted /dev/nbd0 print
+```
+
+After finished resizing, disconnect the image:
+```
+$ sudo qemu-nbd --disconnect /dev/nbd0
+```
