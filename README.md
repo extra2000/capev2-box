@@ -62,7 +62,11 @@ After finished installations, `cuckoo1` VM will shutdown. Execute the following 
 $ sudo virsh start cuckoo1
 ```
 
-Then, shutdown `cuckoo1`.
+Then, shutdown `cuckoo1` and disconnect the installation ISO media (use `$ sudo virsh domblklist cuckoo1` to find out whether the installation ISO is `sda` or `hda`):
+```
+$ sudo virsh change-media cuckoo1 hda --eject --config
+$ rm -v /home/vagrant/Windows.iso
+```
 
 
 ## Memory Lock
