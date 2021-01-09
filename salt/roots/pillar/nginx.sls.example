@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+
+nginx:
+  lookup:
+    hostuser:
+      name: vagrant
+      group: vagrant
+    capev2:
+      http:
+        host: 127.0.0.1
+        port: 8000
+    ssl:
+      default_bits: 2048
+      country: MY
+      state: WP_Kuala_Lumpur
+      city: Kuala_Lumpur
+      organization_name: extra2000
+      organization_unit: research
+      common_name: localhost
+      email: ventilator@radiator.abc
+      days_valid: 365
+    dhparam:
+      enabled: false
+      bits: 2048
+    client_max_body_size: 100M

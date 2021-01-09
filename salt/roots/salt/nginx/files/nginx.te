@@ -1,0 +1,12 @@
+module nginx 1.0;
+
+require {
+    type soundd_port_t;
+    type http_cache_port_t;
+    type httpd_t;
+    class tcp_socket name_connect;
+}
+
+#============= httpd_t ==============
+allow httpd_t http_cache_port_t:tcp_socket name_connect;
+allow httpd_t soundd_port_t:tcp_socket name_connect;

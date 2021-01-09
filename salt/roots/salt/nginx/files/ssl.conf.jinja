@@ -1,0 +1,13 @@
+[req]
+default_bits={{ ssl.default_bits }}
+prompt=no
+distinguished_name=dn
+
+[dn]
+C={{ ssl.country }}
+ST={{ ssl.state }}
+L={{ ssl.city }}
+O={{ ssl.organization_name }}
+OU={{ ssl.organization_unit }}
+CN={{ ssl.common_name }}
+emailAddress={{ ssl.email }}

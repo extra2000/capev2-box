@@ -1,6 +1,21 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+def salt_provision_capev2_box(context)
+  context.vm.provision "salt", run: 'once' do |salt|
+    salt.minion_config = "salt/etc/minion"
+    salt.masterless = true
+    salt.run_highstate = false
+    salt.verbose = true
+    salt.log_level = "info"
+    salt.colorize = true
+    salt.install_type = "git"
+    salt.version = "3002.2"
+    salt.python_version = "3"
+    salt.bootstrap_options = "-P -x python3 -c /tmp"
+  end
+end
+
 Vagrant.configure("2") do |config|
 
   config.vagrant.plugins = ["vagrant-reload", "vagrant-scp"]
@@ -24,6 +39,8 @@ Vagrant.configure("2") do |config|
       v.machine_type = "pc-i440fx-2.11"
       v.machine_arch = "x86_64"
       v.autostart = false
+
+      salt_provision_capev2_box override
     end
 
     capev2_box.vm.provider "virtualbox" do |v, override|
@@ -41,8 +58,10 @@ Vagrant.configure("2") do |config|
       v.customize ['modifyvm', :id, '--nested-hw-virt', 'on']
 
       override.vm.provision 'shell', run: 'once', inline: 'apt update && apt install -y avahi-utils libnss-mdns && systemctl start avahi-daemon && systemctl enable avahi-daemon', privileged: true
+      salt_provision_capev2_box override
     end
 
+    capev2_box.vm.synced_folder "salt/roots/", "/srv/", type: "rsync"
     capev2_box.vm.synced_folder "capev2/CAPEv2", "/opt/CAPEv2-source", type: "rsync", rsync__args: ["--verbose", "--archive", "--delete", "-z"]
     capev2_box.vm.synced_folder "capev2/doomedraven-tools", "/opt/doomedraven-tools", type: "rsync"
     capev2_box.vm.synced_folder '.', '/vagrant', disabled: true
