@@ -210,7 +210,7 @@ $ sudo virsh destroy cuckoo1
 
 ## Hardening Sandbox Security
 
-To change network from NAT to Host-only, remove `<forward mode='nat'/>` in `$ sudo virsh net-edit default`. Then, apply changes:
+To change network from NAT to Host-only, Execute `$ sudo virsh net-edit default` and remove a line containing `<forward mode='nat'/>`. Then, apply changes:
 ```
 $ sudo virsh net-destroy default
 $ sudo virsh net-start default
