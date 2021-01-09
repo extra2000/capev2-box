@@ -17,6 +17,11 @@ $ git clone --recursive https://github.com/extra2000/capev2-box
 
 ## Creating Vagrant box
 
+Create NGINX pillar file based on the example. Optionally you can change the value in the `salt/roots/pillar/nginx.sls`:
+```
+$ cp -v salt/roots/pillar/nginx.sls.example salt/roots/pillar/nginx.sls
+```
+
 Create a vagrant file based on the example and then create the Vagrant box (you can change to `--provider=libvirt` if you are using Libvirt provider):
 ```
 $ cp -v vagrant/examples/Vagrantfile.capev2-box.ubuntu-2004.x86_64.example vagrant/Vagrantfile.capev2-box
@@ -41,6 +46,13 @@ $ sudo systemctl set-default multi-user.target
 $ exit
 $ vagrant reload
 ```
+
+Disable swap memory, install Cockpit, and then install NGINX with self-signed certificate:
+```
+$ vagrant ssh capev2-box -- sudo salt-call state.highstate
+```
+
+To use Cockpit, open https://capev2-box:9090 with your web-browser. To access CAPEv2 web, use https://capev2-box.
 
 
 ## Creating Windows 7 VM as the Sandbox guest
