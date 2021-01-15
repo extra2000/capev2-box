@@ -165,7 +165,8 @@ enabled = no
 
 Finally, restart all `cape` services:
 ```
-$ sudo systemctl restart cape-processor.service cape-rooter.service cape-web.service cape.service
+$ sudo systemctl stop cape-processor.service cape-rooter.service cape-web.service cape.service
+$ sudo systemctl start cape-processor.service cape-rooter.service cape-web.service cape.service
 ```
 
 
@@ -243,7 +244,8 @@ To cleanup old data:
 ```
 $ cd /opt/CAPEv2/utils
 $ sudo python3 cleaners.py --delete-older-than-days 7
-$ sudo systemctl restart cape-processor.service cape-rooter.service cape-web.service cape.service
+$ sudo systemctl stop cape-processor.service cape-rooter.service cape-web.service cape.service
+$ sudo systemctl start cape-processor.service cape-rooter.service cape-web.service cape.service
 ```
 
 
