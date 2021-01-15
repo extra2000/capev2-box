@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.1.1](https://github.com/extra2000/capev2-box/compare/v1.1.0...v1.1.1) (2021-01-15)
+
+
+### Fixes
+
+* **README:** Add `tags = x64` to `/opt/CAPEv2/conf/api.conf` ([e46a1f2](https://github.com/extra2000/capev2-box/commit/e46a1f25843a086874e4ee37bef0da959a825f46))
+* **README:** Replace `systemctl restart` to `systemctl stop` and `systemctl restart` due to `cape.service` doesn't reload config via `systemctl restart` ([d4fa3ed](https://github.com/extra2000/capev2-box/commit/d4fa3ed069333dd23e8e344f73a312182c45a6b0))
+
 ## [1.1.0](https://github.com/extra2000/capev2-box/compare/v1.0.0...v1.1.0) (2021-01-10)
 
 
