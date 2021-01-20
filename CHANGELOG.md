@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/extra2000/capev2-box/compare/v1.1.1...v1.2.0) (2021-01-20)
+
+
+### Features
+
+* **submodule:** Update `cockpit-formula` to [v1.0.2](https://github.com/extra2000/cockpit-formula/releases/tag/v1.0.2) ([6599680](https://github.com/extra2000/capev2-box/commit/6599680c05f54e3c5abc62af929694bdd91946da))
+
+
+### Continuous Integrations
+
+* **AppVeyor:** Upgrade Ubuntu from `18.04` to `20.04` ([1414a17](https://github.com/extra2000/capev2-box/commit/1414a17a2fbca765c03964c8cb678fab48dca7e0))
+
 ### [1.1.1](https://github.com/extra2000/capev2-box/compare/v1.1.0...v1.1.1) (2021-01-15)
 
 
