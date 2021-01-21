@@ -85,9 +85,9 @@ $ rm -v /home/vagrant/Windows.iso
 
 Add the following lines in `/etc/security/limits.conf` to limit memory usage used by user `cape`:
 ```
-# Lock max 1Gb
-cape soft memlock 1048576
-cape hard memlock 1048576
+# Lock max 2Gb
+cape soft memlock 2097152
+cape hard memlock 2097152
 ```
 
 Then, reboot host or execute `$ vagrant reload capev2-box`.
