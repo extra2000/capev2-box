@@ -1,5 +1,18 @@
 # Changelog
 
+### [1.2.1](https://github.com/extra2000/capev2-box/compare/v1.2.0...v1.2.1) (2021-01-22)
+
+
+### Performance Improvements
+
+* **vagrant:** Increase memory from 4GB to 5GB ([37a4150](https://github.com/extra2000/capev2-box/commit/37a415040ff060daf5ee1845489ce30d23fd3eab))
+
+
+### Documentations
+
+* **README:** Add instruction to fine tune `cape-processor.service` via `/lib/systemd/system/cape-processor.service` ([73a4930](https://github.com/extra2000/capev2-box/commit/73a4930a7b38f54860430e3325b893e6d4dc5544))
+* **README:** Increase memory limit for CAPEv2 services from 1GB to 2GB in `/etc/security/limits.conf` ([96b3d16](https://github.com/extra2000/capev2-box/commit/96b3d1645b831dd9ca64a07a61530bcb98298f27))
+
 ## [1.2.0](https://github.com/extra2000/capev2-box/compare/v1.1.1...v1.2.0) (2021-01-20)
 
 
