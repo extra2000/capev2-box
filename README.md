@@ -173,6 +173,11 @@ ExecStart=/usr/bin/python3 process.py -p1 auto -pt 900
 RestartSec=1m
 ```
 
+Reload systemd to apply changes in `/lib/systemd/system/cape-processor.service`:
+```
+$ sudo systemctl daemon-reload
+```
+
 Finally, restart all `cape` services:
 ```
 $ sudo systemctl stop cape-processor.service cape-rooter.service cape-web.service cape.service
