@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.2](https://github.com/extra2000/capev2-box/compare/v1.2.1...v1.2.2) (2021-01-28)
+
+
+### Documentations
+
+* **README:** Add `sudo systemctl daemon-reload` to apply changes in `/lib/systemd/system/cape-processor.service` ([2b44649](https://github.com/extra2000/capev2-box/commit/2b446493430efd17b1fddefccab88f83668c329b))
+
 ### [1.2.1](https://github.com/extra2000/capev2-box/compare/v1.2.0...v1.2.1) (2021-01-22)
 
 
