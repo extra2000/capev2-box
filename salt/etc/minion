@@ -393,6 +393,7 @@ file_roots:
   base:
     - /srv/salt
     - /srv/formulas/cockpit-formula
+    - /srv/formulas/podman-formula
 
 # By default, the Salt fileserver recurses fully into all defined environments
 # to attempt to find files. To limit this behavior so that the fileserver only

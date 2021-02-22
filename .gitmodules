@@ -7,3 +7,6 @@
 [submodule "salt/roots/formulas/cockpit-formula"]
 	path = salt/roots/formulas/cockpit-formula
 	url = https://github.com/extra2000/cockpit-formula.git
+[submodule "salt/roots/formulas/podman-formula"]
+	path = salt/roots/formulas/podman-formula
+	url = https://github.com/extra2000/podman-formula.git
