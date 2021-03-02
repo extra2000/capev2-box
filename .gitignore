@@ -5,3 +5,4 @@ vagrant/*
 
 salt/roots/pillar/nginx.sls
 salt/roots/pillar/zabbix-agent.sls
+salt/roots/pillar/filebeat.sls

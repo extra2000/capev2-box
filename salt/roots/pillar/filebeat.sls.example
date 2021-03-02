@@ -1,0 +1,75 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+
+filebeat:
+  lookup:
+    hostuser:
+      name: vagrant
+      group: vagrant
+    pod:
+      network:
+        subnet: 10.77.1.0/24
+        gateway: 10.77.1.1
+        domain_name: filebeatnet
+    filebeat:
+      resources:
+        requests:
+          memory: 100Mi
+        limits:
+          memory: 100Mi
+      ymlcfg:
+        name: capev2-box
+        logging.level: warning
+        logging.to_files: true
+        logging.files:
+          path: /var/log/filebeat
+          name: filebeat
+          keepfiles: 7
+          permissions: "0644"
+        output.logstash:
+          hosts:
+            - elk-box:5044
+        filebeat.inputs:
+          - type: log
+            paths:
+              - /var/log/filebeat/*
+            fields:
+              service: filebeat
+          - type: log
+            paths:
+              - /var/log/nginx/*.log
+            fields:
+              service: nginx.service
+          - type: log
+            paths:
+              - /var/log/capev2/cape.log
+            fields:
+              service: cape.service
+          - type: log
+            paths:
+              - /var/log/capev2/cape-processor.log
+            fields:
+              service: cape-processor.service
+          - type: log
+            paths:
+              - /var/log/capev2/cape-rooter.log
+            fields:
+              service: cape-rooter.service
+          - type: log
+            paths:
+              - /var/log/capev2/cape-web.log
+            fields:
+              service: cape-web.service
+      podcfg:
+        volumeMounts:
+          - mountPath: /var/log/nginx
+            name: nginx-logs-dir
+          - mountPath: /var/log/capev2
+            name: capev2-logs-dir
+        volumes:
+          - name: nginx-logs-dir
+            hostPath:
+              path: /var/log/nginx
+          - name: capev2-logs-dir
+            hostPath:
+              path: /var/log/capev2

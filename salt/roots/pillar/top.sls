@@ -4,3 +4,4 @@ base:
     - zabbix-agent
     - nginx
     - cockpit
+    - filebeat
