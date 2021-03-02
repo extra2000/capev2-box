@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+
+zabbix_agent:
+  lookup:
+    hostuser:
+      name: vagrant
+      group: vagrant
+    config:
+      hostname: capev2-box
+      server:
+        host: zabbix-box
+        port: 10050
