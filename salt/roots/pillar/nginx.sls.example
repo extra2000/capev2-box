@@ -6,10 +6,6 @@ nginx:
     hostuser:
       name: vagrant
       group: vagrant
-    capev2:
-      http:
-        host: 127.0.0.1
-        port: 8000
     ssl:
       default_bits: 2048
       country: MY
@@ -23,4 +19,3 @@ nginx:
     dhparam:
       enabled: false
       bits: 2048
-    client_max_body_size: 100M

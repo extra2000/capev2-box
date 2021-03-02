@@ -396,6 +396,7 @@ file_roots:
     - /srv/formulas/podman-formula
     - /srv/formulas/zabbix-agent-formula
     - /srv/formulas/filebeat-formula
+    - /srv/formulas/nginx-formula
 
 # By default, the Salt fileserver recurses fully into all defined environments
 # to attempt to find files. To limit this behavior so that the fileserver only

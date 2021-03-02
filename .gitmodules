@@ -16,3 +16,6 @@
 [submodule "salt/roots/formulas/filebeat-formula"]
 	path = salt/roots/formulas/filebeat-formula
 	url = https://github.com/extra2000/filebeat-formula.git
+[submodule "salt/roots/formulas/nginx-formula"]
+	path = salt/roots/formulas/nginx-formula
+	url = https://github.com/extra2000/nginx-formula.git
