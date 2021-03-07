@@ -54,6 +54,21 @@ $ sudo bash /opt/doomedraven-tools/Sandbox/cape2.sh base
 $ sudo chown -R cape:cape /opt/CAPEv2
 $ sudo mkdir -pv /var/log/capev2
 $ sudo systemctl set-default multi-user.target
+```
+
+Fix Volatility3 issue:
+```
+$ sudo chown -R cape:cape /usr/local/lib/python3.8/dist-packages/volatility3/symbols
+```
+
+Fix TRiD issue:
+```
+$ sudo chmod a+x /opt/CAPEv2/data/trid/trid
+$ sudo rm -f /usr/lib/locale/locale-archive && sudo locale-gen --no-archive
+```
+
+Exit and reload Vagrant box:
+```
 $ exit
 $ vagrant reload
 ```
