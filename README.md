@@ -416,8 +416,16 @@ $ sudo virsh start cuckoo1
 
 Then, setup the following prerequisites:
 1. Install Firefox
-1. Install Python 3.6.8 (32-bit). During installation, enable `Add Python 3.6 to PATH`.
-1. Shutdown
+1. Install Python 3.7.2 (32-bit). During installation, enable `Add Python 3.7 to PATH`.
+
+Download https://bootstrap.pypa.io/get-pip.py, run `Command Prompt` as `Administrator` and then execute the following command:
+```
+> cd C:\Users\${USER}\Downloads
+> python get-pip.py
+> python -m pip install pillow pywin32
+```
+
+Shutdown `cuckoo1`.
 
 Mount QCOW2 Image to Host. Execute the following command on host to load `nbd` module and connect the `qcow2` image to host:
 ```
@@ -448,7 +456,7 @@ Run `PowerShell` as `Administrator`:
 > python agent.py
 ```
 
-Let the VM idle for a few minutes. Then while the VM is running, create snapshot:
+Let the VM idle for a few minutes and then minimize the `Powershell` window to minimize the number of screenshots. Then while the VM is running, create snapshot:
 ```
 $ sudo virsh snapshot-create-as cuckoo1 --name clean
 ```
