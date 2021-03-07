@@ -206,10 +206,41 @@ enabled = yes
 enabled = yes
 ```
 
-To disable VirusTotal, set the following value in `/opt/CAPEv2/conf/processing.conf`:
+Configure `/opt/CAPEv2/conf/processing.conf`:
 ```
 [virustotal]
 enabled = no
+
+[loop_detection]
+enabled = yes
+
+[sysmon]
+enabled = yes
+
+[flare_capa]
+enabled = yes
+on_demand = no
+static = yes
+cape = yes
+procdump = yes
+
+[decompression]
+enabled = yes
+
+[dumptls]
+enabled = yes
+
+[procmon]
+enabled = yes
+
+[memory]
+enabled = yes
+
+[usage]
+enabled = yes
+
+[trid]
+enabled = yes
 ```
 
 In `/lib/systemd/system/cape-processor.service`, set `-p7` to `-p1` and `RestartSec=1m`. This will reduce the number of parallel processing from 7 CPUs to 1 CPU to reduce memory consumption. Since the `cape-processor.service` is just a script, not a daemon, the `RestartSec=1m` will ensure the `cape-processor.service` will be executed for every 1 minute. For example:
