@@ -324,6 +324,36 @@ enabled = yes
 enabled = yes
 ```
 
+Configure `/opt/CAPEv2/conf/auxiliary.conf`:
+```
+[auxiliar_modules]
+curtain = yes
+sysmon = yes
+procmon = yes
+
+[display_browser_martians]
+enabled = yes
+
+[display_office_martians]
+enabled = yes
+
+[display_shrike]
+enabled = yes
+
+[expanded_dashboard]
+enabled = yes
+
+[display_et_portal]
+enabled = yes
+
+[display_pt_portal]
+enabled = yes
+
+[zipped_download]
+enabled = yes
+zip_pwd = infected
+```
+
 In `/lib/systemd/system/cape-processor.service`, set `-p7` to `-p1` and `RestartSec=1m`. This will reduce the number of parallel processing from 7 CPUs to 1 CPU to reduce memory consumption. Since the `cape-processor.service` is just a script, not a daemon, the `RestartSec=1m` will ensure the `cape-processor.service` will be executed for every 1 minute. For example:
 ```
 ...
