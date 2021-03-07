@@ -138,12 +138,11 @@ $ sudo virsh net-start default
 Set the following values in `/opt/CAPEv2/conf/cuckoo.conf`:
 ```
 [cuckoo]
-delete_original = on
-delete_bin_copy = on
 reschedule = on
 max_analysis_count = 1
 max_machines_count = 1
 max_vmstartup_count = 1
+freespace = 10000
 
 [resultserver]
 ip = 192.168.122.1
