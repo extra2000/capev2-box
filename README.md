@@ -354,14 +354,16 @@ enabled = yes
 zip_pwd = infected
 ```
 
-In `/lib/systemd/system/cape-processor.service`, set `-p7` to `-p1` and `RestartSec=1m`. This will reduce the number of parallel processing from 7 CPUs to 1 CPU to reduce memory consumption. Since the `cape-processor.service` is just a script, not a daemon, the `RestartSec=1m` will ensure the `cape-processor.service` will be executed for every 1 minute. For example:
+In `/lib/systemd/system/cape-processor.service`, set `-p7` to `-p1`, `RestartSec=1m`, and timeout 1 hour setting `-pt 900` to `-pt 3600`. This will reduce the number of parallel processing from 7 CPUs to 1 CPU to reduce memory consumption. Since the `cape-processor.service` is just a script, not a daemon, the `RestartSec=1m` will ensure the `cape-processor.service` will be executed for every 1 minute. Then, redirect `stdout` and `stderr` to `/var/log/capev2/cape-processor.log`. For example:
 ```
 ...
 [Service]
 ...
-ExecStart=/usr/bin/python3 process.py -p1 auto -pt 900
+ExecStart=/usr/bin/python3 process.py -p1 auto -pt 3600
 ...
 RestartSec=1m
+StandardOutput=append:/var/log/capev2/cape-processor.log
+StandardError=append:/var/log/capev2/cape-processor.log
 ```
 
 Reload systemd to apply changes in `/lib/systemd/system/cape-processor.service`:
