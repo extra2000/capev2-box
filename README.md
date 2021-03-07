@@ -24,7 +24,7 @@ $ cp -v salt/roots/pillar/nginx.sls.example salt/roots/pillar/nginx.sls
 $ cp -v salt/roots/pillar/filebeat.sls.example salt/roots/pillar/filebeat.sls
 ```
 
-Create a vagrant file based on the example and then create the Vagrant box (you can change to `--provider=libvirt` if you are using Libvirt provider):
+Create a vagrant file based on the example (you may need to increase memory from `v.memory = "5120"` to `v.memory = "12288"`) and then create the Vagrant box (you can change to `--provider=libvirt` if you are using Libvirt provider):
 ```
 $ cp -v vagrant/examples/Vagrantfile.capev2-box.ubuntu-2004.x86_64.example vagrant/Vagrantfile.capev2-box
 $ vagrant up --provider=virtualbox
