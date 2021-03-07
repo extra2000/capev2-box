@@ -384,6 +384,17 @@ StandardOutput=append:/var/log/capev2/cape-web.log
 StandardError=append:/var/log/capev2/cape-web.log
 ```
 
+In `/lib/systemd/system/cape.service`, change from `RestartSec=5m` to `RestartSec=1m`. Also redirect `stdout` and `stderr` to `/var/log/capev2/cape.log`:
+```
+...
+[Service]
+...
+RestartSec=1m
+StandardOutput=append:/var/log/capev2/cape.log
+StandardError=append:/var/log/capev2/cape.log
+...
+```
+
 Reload systemd to apply changes in `/lib/systemd/system/cape-processor.service`:
 ```
 $ sudo systemctl daemon-reload
