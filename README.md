@@ -86,7 +86,7 @@ Rename `Windows.iso` to your ISO name for the Windows 7 installation ISO file:
 ```
 $ vagrant scp Windows.iso capev2-box:/home/vagrant/Windows.iso
 $ vagrant ssh capev2-box
-$ sudo virt-install --name cuckoo1 --memory 1024 --vcpus 1 --machine pc --os-variant win7 --network="default",model=e1000 --cdrom /home/vagrant/Windows.iso --disk path=/var/lib/libvirt/images/cuckoo1.qcow2,size=32,bus=sata,format=qcow2 --graphics vnc,listen=0.0.0.0,port=5900 --noautoconsole
+$ sudo virt-install --name cuckoo1 --memory 4096 --vcpus 2 --machine pc --os-variant win7 --network="default",model=e1000 --cdrom /home/vagrant/Windows.iso --disk path=/var/lib/libvirt/images/cuckoo1.qcow2,size=32,bus=sata,format=qcow2 --graphics vnc,listen=0.0.0.0,port=5900 --noautoconsole
 ```
 
 On host, use `vncviewer` from [TigerVNC](https://tigervnc.org/) command to view Windows 7 installations (you may need to replace `capev2-box` with it's IP address):
