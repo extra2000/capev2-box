@@ -1,5 +1,54 @@
 # Changelog
 
+## [1.3.0](https://github.com/extra2000/capev2-box/compare/v1.2.2...v1.3.0) (2021-03-07)
+
+
+### Features
+
+* **https:** Add `https` state to configure NGINX for CAPEv2 HTTPS ([64892d3](https://github.com/extra2000/capev2-box/commit/64892d3b34b3644e149dae44375b372853c32f77))
+* **nginx:** Add state `nginx_log_permission` to allow `filebeat` container to read logs ([2bea3c0](https://github.com/extra2000/capev2-box/commit/2bea3c0960ba2d353dfdc500f3645e16ed0bc163))
+* **submodule:** Add [filebeat-formula v1.1.0](https://github.com/extra2000/filebeat-formula/releases/tag/v1.1.0) ([4eceaf5](https://github.com/extra2000/capev2-box/commit/4eceaf50e99b33f242fca10ee505cdf766397a99))
+* **submodule:** Add [nginx-formula v1.0.1](https://github.com/extra2000/nginx-formula/releases/tag/v1.0.1) ([80af7a7](https://github.com/extra2000/capev2-box/commit/80af7a718fcc8d42f5db8e7cefbfe57778e7c42d))
+* **submodule:** Add [podman-formula v2.2.1](https://github.com/extra2000/podman-formula/releases/tag/v2.2.1) ([f117f9b](https://github.com/extra2000/capev2-box/commit/f117f9bf5b9e49ecd34a1acaa0d6264164d186e7))
+* **submodule:** Add [zabbix-agent-formula v1.0.0](https://github.com/extra2000/zabbix-agent-formula/releases/tag/v1.0.0) ([b62ad2a](https://github.com/extra2000/capev2-box/commit/b62ad2a98efe7b99e50d892a3fac19239d5d329d))
+* **submodule:** Update `capev2/CAPEv2` ([37ad0d3](https://github.com/extra2000/capev2-box/commit/37ad0d35fcd92de691a434d8c15af773ef3efac4))
+* **submodule:** Update `capev2/doomedraven-tools` ([358e401](https://github.com/extra2000/capev2-box/commit/358e40191693815d65c2e5308db9fe6ad0d72e7b))
+
+
+### Code Refactoring
+
+* **nginx:** Remove existing `nginx` state in favor of `nginx-formula` ([7fbd748](https://github.com/extra2000/capev2-box/commit/7fbd7484e007e857a16e4884fdc284d5e0108385))
+* **submodule:** Remove `cockpit-formula` in favor of `zabbix-agent-formula` ([88fa044](https://github.com/extra2000/capev2-box/commit/88fa0448c018327545bef515e432218f68a9720b))
+
+
+### Documentations
+
+* **README:** Add configurations for `/lib/systemd/system/cape-rooter.service` ([78a371c](https://github.com/extra2000/capev2-box/commit/78a371c39aaee16be006cd38ffa6e931b2535172))
+* **README:** Add configurations for `/lib/systemd/system/cape-rooter.service` ([2dc45a4](https://github.com/extra2000/capev2-box/commit/2dc45a4409878fc72b829ae3317d40a94598e207))
+* **README:** Add configurations for `/lib/systemd/system/cape.service` ([3643fde](https://github.com/extra2000/capev2-box/commit/3643fde1347a03dda107341b34b069f24f3b42d6))
+* **README:** Add configurations for `/opt/CAPEv2/conf/auxiliary.conf` ([47d6f54](https://github.com/extra2000/capev2-box/commit/47d6f54672bd56717a3f10e38bb3b31b962359fa))
+* **README:** Add configurations for `/opt/CAPEv2/conf/memory.conf` ([a1586ef](https://github.com/extra2000/capev2-box/commit/a1586efc2f83d282a1a3ec71689813a19a6247b5))
+* **README:** Add configurations for `/opt/CAPEv2/conf/reporting.conf` ([11a0e61](https://github.com/extra2000/capev2-box/commit/11a0e616a162e26c0b643b203e103eee37e63b74))
+* **README:** Add description to change Vagrant box memory from default 5GB to 12GB ([e2d1703](https://github.com/extra2000/capev2-box/commit/e2d1703aa8ec949c3ddd19bd1d2a2cc30dfebc9f))
+* **README:** Add instruction to set timezone ([c02b239](https://github.com/extra2000/capev2-box/commit/c02b2393dc7726fd12e578396ffa2dc0e3773c8c))
+* **README:** Add instructions to copy `zabbix-agent` and `filebeat` pillar files ([9510337](https://github.com/extra2000/capev2-box/commit/95103372a5ed0eb2194668b3f1a21a4c7e0effe0))
+* **README:** Add instructions to fix `Volatility3` and `TRiD` ([466c1cb](https://github.com/extra2000/capev2-box/commit/466c1cba28facf709d3cd224dc9f19126664efda))
+* **README:** Add more instructions for Maintenance ([50c1fa6](https://github.com/extra2000/capev2-box/commit/50c1fa62ad303ec093233991fbd2cbdefd842cd9))
+* **README:** Improve and add more instructions for CAPEv2 agent ([884d1b9](https://github.com/extra2000/capev2-box/commit/884d1b9c3a4b5285c63bad77dc71e6af359514ab))
+* **README:** Improve descriptions for `systemctl daemon-reload` ([cda11ae](https://github.com/extra2000/capev2-box/commit/cda11aef925301815335bb22289a96dced804974))
+* **README:** Improve instructions for obtaining agent MAC Address for configuring static DHCP ([b386b0b](https://github.com/extra2000/capev2-box/commit/b386b0bd33c2074762c4a55597b299b406f57b56))
+* **README:** Increase agent memory from 1GB to 4GB and from 1 vCPU to 2 vCPUs ([02b5f7f](https://github.com/extra2000/capev2-box/commit/02b5f7f516d1446c33c27cd218c2d4d882c8bc1e))
+* **README:** Remove Section `Memory Lock` because this procedure is not practical and causing `cape-processor.service` failed with `Memory Error` ([3055225](https://github.com/extra2000/capev2-box/commit/3055225a1f3a901f998bb1b3801adde38460eb30))
+* **README:** Update CAPEv2 installation instruction due to changes in `cape2.sh` script and also create `/var/log/capev2` to store CAPEv2 `journald` logs ([7e1da03](https://github.com/extra2000/capev2-box/commit/7e1da03a7dc180548256f50f11034f0e4bfb009f))
+* **README:** Update configurations for `/lib/systemd/system/cape-processor.service` ([29419aa](https://github.com/extra2000/capev2-box/commit/29419aaba28045720f2d464f3776271501dbfdef))
+* **README:** Update configurations for `/opt/CAPEv2/conf/api.conf` ([fe5ce60](https://github.com/extra2000/capev2-box/commit/fe5ce60a1afd165511c5d935157ac335a881b77b))
+* **README:** Update configurations for `/opt/CAPEv2/conf/cuckoo.conf` ([9fdf511](https://github.com/extra2000/capev2-box/commit/9fdf511436a7c065d339afae506954fa85f38c1e))
+* **README:** Update configurations for `/opt/CAPEv2/conf/kvm.conf` ([4c59d3c](https://github.com/extra2000/capev2-box/commit/4c59d3cb7014dfb5533a57c5ebf6d90617c73ab2))
+* **README:** Update configurations for `/opt/CAPEv2/conf/processing.conf` ([ad3c229](https://github.com/extra2000/capev2-box/commit/ad3c2296ba4bf1c06664374dc537cfe51e1f785b))
+* **README:** Update configurations for `/opt/CAPEv2/conf/web.conf` ([f115ee1](https://github.com/extra2000/capev2-box/commit/f115ee1c56200cc0f4f1673cdfda4252bf80e4fb))
+* **README:** Update provision instructions due to `nginx` state have been replaced with `nginx-formula` and `cockpit-formula` have been removed in favor of `zabbix-agent-formula` ([8d91ac6](https://github.com/extra2000/capev2-box/commit/8d91ac656577d5f307deba76996a2ff5a7e31f14))
+* **vagrant:** Add comments for port forwarding ([43a502f](https://github.com/extra2000/capev2-box/commit/43a502fc33ed81b0e681da057d8122dc13a6eb40))
+
 ### [1.2.2](https://github.com/extra2000/capev2-box/compare/v1.2.1...v1.2.2) (2021-01-28)
 
 
