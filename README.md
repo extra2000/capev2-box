@@ -106,18 +106,6 @@ $ rm -v /home/vagrant/Windows.iso
 ```
 
 
-## Memory Lock
-
-Add the following lines in `/etc/security/limits.conf` to limit memory usage used by user `cape`:
-```
-# Lock max 2Gb
-cape soft memlock 2097152
-cape hard memlock 2097152
-```
-
-Then, reboot host or execute `$ vagrant reload capev2-box`.
-
-
 ## Static DHCP Network for Guests
 
 Make sure to shutdown all guests. Execute `$ sudo virsh net-edit default` and add `<host mac='52:54:00:7e:3a:8e' ip='192.168.122.2'/>` line inside `<dhcp></dhcp>`. For example:
