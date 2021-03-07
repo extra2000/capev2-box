@@ -485,12 +485,24 @@ To monitor VM, you can use VNC.
 
 ## Maintenance
 
-To cleanup old data:
+For example to cleanup old data, either delete files older than 7 days:
 ```
 $ cd /opt/CAPEv2/utils
-$ sudo python3 cleaners.py --delete-older-than-days 7
-$ sudo systemctl stop cape-processor.service cape-rooter.service cape-web.service cape.service
-$ sudo systemctl start cape-processor.service cape-rooter.service cape-web.service cape.service
+$ sudo su cape -c "python3 cleaners.py --delete-older-than-days 7"
+```
+
+or delete tasks range from 1 to 275:
+```
+$ cd /opt/CAPEv2/utils
+$ sudo su cape -c "python3 cleaners.py -drs 1 -dre 275"
+```
+
+You may need to update rules and feed everyday using the following command:
+```
+$ cd /opt/CAPEv2/utils
+$ sudo su cape -c "python3 community.py -waf -cr"
+$ sudo systemctl stop cape-processor.service
+$ sudo systemctl start cape-processor.service
 ```
 
 
