@@ -179,9 +179,30 @@ enabled = yes
 enabled = yes
 ```
 
-Enable Malware scoring in `/opt/CAPEv2/conf/web.conf`:
+Configure `/opt/CAPEv2/conf/web.conf`:
 ```
+[general]
+max_sample_size = 64000000
+
 [malscore]
+enabled = yes
+
+[delete]
+enabled = yes
+
+[admin]
+enabled = yes
+
+[comments]
+enabled = yes
+
+[dlnexec]
+enabled = yes
+
+[url_analysis]
+enabled = yes
+
+[tlp]
 enabled = yes
 ```
 
