@@ -108,6 +108,8 @@ $ rm -v /home/vagrant/Windows.iso
 
 ## Static DHCP Network for Guests
 
+Execute `$ sudo virsh dumpxml cuckoo1 | grep "mac address"` to find out `cuckoo1` MAC address. For this example, assume it's MAC address is `'52:54:00:7e:3a:8e'`.
+
 Make sure to shutdown all guests. Execute `$ sudo virsh net-edit default` and add `<host mac='52:54:00:7e:3a:8e' ip='192.168.122.2'/>` line inside `<dhcp></dhcp>`. For example:
 ```
 <network>
@@ -123,8 +125,6 @@ Make sure to shutdown all guests. Execute `$ sudo virsh net-edit default` and ad
   </ip>
 </network>
 ```
-
-Use `$ sudo virsh edit cuckoo1` to find out `cuckoo1` MAC address. Can be found under `<interface type='network'>...</interface>`.
 
 Apply changes to the network:
 ```
