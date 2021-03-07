@@ -19,7 +19,9 @@ $ git clone --recursive https://github.com/extra2000/capev2-box
 
 Create NGINX pillar file based on the example. Optionally you can change the value in the `salt/roots/pillar/nginx.sls`:
 ```
+$ cp -v salt/roots/pillar/zabbix-agent.sls.example salt/roots/pillar/zabbix-agent.sls
 $ cp -v salt/roots/pillar/nginx.sls.example salt/roots/pillar/nginx.sls
+$ cp -v salt/roots/pillar/filebeat.sls.example salt/roots/pillar/filebeat.sls
 ```
 
 Create a vagrant file based on the example and then create the Vagrant box (you can change to `--provider=libvirt` if you are using Libvirt provider):
