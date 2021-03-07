@@ -279,6 +279,51 @@ enabled = yes
 enabled = yes
 ```
 
+Configure `/opt/CAPEv2/conf/memory.conf`:
+```
+[basic]
+dostrings = no
+
+[malfind]
+enabled = yes
+
+[pslist]
+enabled = yes
+
+[pstree]
+enabled = yes
+
+[callbacks]
+enabled = yes
+
+[getsids]
+enabled = yes
+
+[privs]
+enabled = yes
+
+[dlllist]
+enabled = yes
+
+[handles]
+enabled = yes
+
+[mutantscan]
+enabled = yes
+
+[svcscan]
+enabled = yes
+
+[modscan]
+enabled = yes
+
+[yarascan]
+enabled = yes
+
+[ssdt]
+enabled = yes
+```
+
 In `/lib/systemd/system/cape-processor.service`, set `-p7` to `-p1` and `RestartSec=1m`. This will reduce the number of parallel processing from 7 CPUs to 1 CPU to reduce memory consumption. Since the `cape-processor.service` is just a script, not a daemon, the `RestartSec=1m` will ensure the `cape-processor.service` will be executed for every 1 minute. For example:
 ```
 ...
