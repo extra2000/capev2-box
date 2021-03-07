@@ -30,6 +30,11 @@ $ cp -v vagrant/examples/Vagrantfile.capev2-box.ubuntu-2004.x86_64.example vagra
 $ vagrant up --provider=virtualbox
 ```
 
+Set timezone to your location, for example:
+```
+$ vagrant ssh capev2-box -- sudo timedatectl set-timezone Asia/Kuala_Lumpur
+```
+
 
 ## CAPEv2 Installations
 
