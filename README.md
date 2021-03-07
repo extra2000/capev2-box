@@ -158,10 +158,25 @@ memory_dump = on
 tags = x64
 ```
 
-Disable rate limiting `/opt/CAPEv2/conf/api.conf`:
+Disable rate limiting and enable other features in `/opt/CAPEv2/conf/api.conf`:
 ```
 [api]
 ratelimit = no
+
+[statistics]
+enabled = yes
+
+[taskresched]
+enabled = yes
+
+[taskdelete]
+enabled = yes
+
+[cuckoostatus]
+enabled = yes
+
+[comments]
+enabled = yes
 ```
 
 Enable Malware scoring in `/opt/CAPEv2/conf/web.conf`:
