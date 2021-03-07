@@ -38,6 +38,7 @@ $ vagrant ssh capev2-box -- sudo timedatectl set-timezone Asia/Kuala_Lumpur
 
 ## CAPEv2 Installations
 
+Install KVM virtualizations:
 ```
 $ vagrant ssh capev2-box
 $ sudo /opt/doomedraven-tools/Virtualization/kvm-qemu.sh all
@@ -45,10 +46,13 @@ $ exit
 $ vagrant reload
 ```
 
+Install CAPEv2:
 ```
 $ vagrant ssh capev2-box
 $ sudo cp -rv /opt/CAPEv2{-source,}
-$ sudo bash /opt/doomedraven-tools/Sandbox/cape2.sh base cape
+$ sudo bash /opt/doomedraven-tools/Sandbox/cape2.sh base
+$ sudo chown -R cape:cape /opt/CAPEv2
+$ sudo mkdir -pv /var/log/capev2
 $ sudo systemctl set-default multi-user.target
 $ exit
 $ vagrant reload
