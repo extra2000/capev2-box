@@ -243,6 +243,42 @@ enabled = yes
 enabled = yes
 ```
 
+Configure `/opt/CAPEv2/conf/reporting.conf`:
+```
+[mitre]
+enabled = yes
+
+[bingraph]
+on_demand = no
+
+[reporthtml]
+enabled = yes
+
+[reporthtmlsummary]
+enabled = yes
+
+[reportpdf]
+enabled = yes
+
+[retention]
+enabled = yes
+memory = 3
+procmemory = 3
+pcap = 3
+sortedpcap = 3
+bsonlogs = 3
+dropped = 3
+screencaps = 3
+reports = 3
+mongo = 3
+
+[compression]
+enabled = yes
+
+[compressresults]
+enabled = yes
+```
+
 In `/lib/systemd/system/cape-processor.service`, set `-p7` to `-p1` and `RestartSec=1m`. This will reduce the number of parallel processing from 7 CPUs to 1 CPU to reduce memory consumption. Since the `cape-processor.service` is just a script, not a daemon, the `RestartSec=1m` will ensure the `cape-processor.service` will be executed for every 1 minute. For example:
 ```
 ...
