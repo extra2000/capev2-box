@@ -366,6 +366,15 @@ StandardOutput=append:/var/log/capev2/cape-processor.log
 StandardError=append:/var/log/capev2/cape-processor.log
 ```
 
+In `/lib/systemd/system/cape-rooter.service`, redirect `stdout` and `stderr` to `/var/log/capev2/cape-rooter.log`:
+```
+...
+[Service]
+...
+StandardOutput=append:/var/log/capev2/cape-rooter.log
+StandardError=append:/var/log/capev2/cape-rooter.log
+```
+
 Reload systemd to apply changes in `/lib/systemd/system/cape-processor.service`:
 ```
 $ sudo systemctl daemon-reload
