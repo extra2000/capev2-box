@@ -73,12 +73,11 @@ $ exit
 $ vagrant reload
 ```
 
-Disable swap memory, install Cockpit, and then install NGINX with self-signed certificate:
+Disable swap memory, install Zabbix agent, and then install NGINX with self-signed certificate:
 ```
 $ vagrant ssh capev2-box -- sudo salt-call state.highstate
+$ vagrant ssh capev2-box -- sudo salt-call state.sls https
 ```
-
-To use Cockpit, open https://capev2-box:9090 with your web-browser. To access CAPEv2 web, use https://capev2-box.
 
 
 ## Creating Windows 7 VM as the Sandbox guest
