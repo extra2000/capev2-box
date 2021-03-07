@@ -395,7 +395,7 @@ StandardError=append:/var/log/capev2/cape.log
 ...
 ```
 
-Reload systemd to apply changes in `/lib/systemd/system/cape-processor.service`:
+Reload systemd to apply changes:
 ```
 $ sudo systemctl daemon-reload
 ```
