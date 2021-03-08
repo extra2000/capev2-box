@@ -478,6 +478,13 @@ $ sudo virsh net-start default
 However, the VM will not have Internet access.
 
 
+## Deploy Filebeat to log CAPEv2 services journal to ELK stack (optional)
+
+```
+$ vagrant ssh capev2-box -- sudo salt-call state.sls filebeat
+```
+
+
 ## Notes
 
 To monitor VM, you can use VNC.
