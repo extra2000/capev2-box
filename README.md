@@ -50,7 +50,7 @@ Install CAPEv2:
 ```
 $ vagrant ssh capev2-box
 $ sudo cp -rv /opt/CAPEv2{-source,}
-$ sudo bash /opt/doomedraven-tools/Sandbox/cape2.sh base
+$ USER=cape; sudo bash /opt/doomedraven-tools/Sandbox/cape2.sh base
 $ sudo chown -R cape:cape /opt/CAPEv2
 $ sudo mkdir -pv /var/log/capev2
 $ sudo systemctl set-default multi-user.target
