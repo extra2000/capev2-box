@@ -485,6 +485,11 @@ $ vagrant ssh capev2-box -- sudo salt-call state.sls filebeat
 ```
 
 
+## Accessing CAPEv2 web page
+
+At this point, the CAPEv2 is ready for use. To access it's web page, visit https://capev2-box.
+
+
 ## Notes
 
 To monitor VM, you can use VNC.
