@@ -5,4 +5,3 @@ base:
     - zabbix_agent
     - nginx
     - nginx_log_permission
-    - filebeat
