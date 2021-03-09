@@ -409,6 +409,11 @@ $ sudo systemctl start cape-processor.service cape-rooter.service cape-web.servi
 
 ## CAPEv2 Agent Installations
 
+During Agent installations, make sure to stop all CAPEv2 services:
+```
+$ sudo systemctl stop cape-processor.service cape-rooter.service cape-web.service cape.service
+```
+
 Start `cuckoo1` VM:
 ```
 $ sudo virsh start cuckoo1
@@ -464,6 +469,11 @@ $ sudo virsh snapshot-create-as cuckoo1 --name clean
 Then, turn off `cuckoo1` VM:
 ```
 $ sudo virsh destroy cuckoo1
+```
+
+Start all CAPEv2 services:
+```
+$ sudo systemctl start cape-processor.service cape-rooter.service cape-web.service cape.service
 ```
 
 
