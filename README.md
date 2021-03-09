@@ -420,7 +420,7 @@ $ sudo virsh start cuckoo1
 ```
 
 Then, setup the following prerequisites:
-1. Install Firefox
+1. Install Firefox and use Firefox as default browser.
 1. Install Python 3.7.2 (32-bit). During installation, enable `Add Python 3.7 to PATH`.
 
 Download https://bootstrap.pypa.io/get-pip.py, run `Command Prompt` as `Administrator` and then execute the following command:
