@@ -1,5 +1,33 @@
 # Changelog
 
+## [2.0.0](https://github.com/extra2000/capev2-box/compare/v1.3.0...v2.0.0) (2021-03-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **submodule:** Pillar format for `pillar/zabbix-agent.sls.example` has changed.
+
+### Features
+
+* **submodule:** Update `capev2/doomedraven-tools` ([6af702a](https://github.com/extra2000/capev2-box/commit/6af702a48851b1435d84e16ebb645b70f13fb5f1))
+* **submodule:** Update `filebeat-formula` to [v1.1.1](https://github.com/extra2000/filebeat-formula/releases/tag/v1.1.1) ([09d7c19](https://github.com/extra2000/capev2-box/commit/09d7c192a2e4881c76fc17f6a703e199feaf5661))
+* **submodule:** Update `zabbix-agent-formula` to [v2.0.1](https://github.com/extra2000/zabbix-agent-formula/releases/tag/v2.0.1) ([b30c92d](https://github.com/extra2000/capev2-box/commit/b30c92dd8e324a5af5199641f973f462fc1535d0))
+
+
+### Fixes
+
+* **salt:** Remove Filebeat from `salt/top.sls` ([c312676](https://github.com/extra2000/capev2-box/commit/c3126767dad191a0e771105ba4ffebd4d9c52ddf))
+
+
+### Documentations
+
+* **README:** Add `USER=cape;` before executing `cape2.sh` ([3e1e4a1](https://github.com/extra2000/capev2-box/commit/3e1e4a1fa229b8bef0ace5cc2c53c574feffb462))
+* **README:** Add instruction to deploy Filebeat ([33f7ed8](https://github.com/extra2000/capev2-box/commit/33f7ed8118f8454f66bb73952da16f6942f9382b))
+* **README:** Add instruction to view CAPEv2 web page after finished setup ([36dbba2](https://github.com/extra2000/capev2-box/commit/36dbba2c0999da8e1ed258af6b376b5e412cf6b1))
+* **README:** After finished Firefox installation, set Firefox as default browser ([1959688](https://github.com/extra2000/capev2-box/commit/1959688d948d375d12f3777a63ac4cc96d9e544c))
+* **README:** CAPEv2 services need to be stopped during agent installations ([4c33482](https://github.com/extra2000/capev2-box/commit/4c33482e04a5db0cdda48f671aa4a9166e2d84a8))
+* **README:** Fix `memory_dump = on` mistake in `/opt/CAPEv2/conf/kvm.conf` and `/opt/CAPEv2/conf/cuckoo.conf` ([3098a8b](https://github.com/extra2000/capev2-box/commit/3098a8bc75ff2ec2a0940da155b7f046ddd26eb3))
+
 ## [1.3.0](https://github.com/extra2000/capev2-box/compare/v1.2.2...v1.3.0) (2021-03-07)
 
 
