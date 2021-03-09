@@ -8,6 +8,10 @@ zabbix_agent:
       group: vagrant
     config:
       hostname: capev2-box
-      server:
-        host: zabbix-box
-        port: 10050
+      passive_check:
+        accepted_servers: "zabbix-box"
+        listen_ip: 0.0.0.0
+        listen_port: 10050
+        start_agents: 3
+      active_check:
+        servers: "zabbix-box:10051"
