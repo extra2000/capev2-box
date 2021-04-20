@@ -279,6 +279,21 @@ enabled = yes
 enabled = yes
 ```
 
+To enable MISP integrations, set the following values in the `/opt/CAPEv2/conf/reporting.conf`:
+```
+[misp]
+enabled = yes
+apikey = apikey-from-your-misp-instance
+url = https://misp-box
+extend_context = yes
+upload_iocs = yes
+network = yes
+ids_files = yes
+dropped = yes
+registry = yes
+mutexes = yes
+```
+
 Configure `/opt/CAPEv2/conf/memory.conf`:
 ```
 [basic]
