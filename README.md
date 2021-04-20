@@ -153,9 +153,9 @@ Set the following values in `/opt/CAPEv2/conf/kvm.conf`:
 ```
 [cuckoo1]
 ip = 192.168.122.2
+tags = x64
 snapshot = clean
 resultserver_ip = 192.168.122.1
-tags = x64
 ```
 
 Disable rate limiting and enable other features in `/opt/CAPEv2/conf/api.conf`:
