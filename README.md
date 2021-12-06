@@ -101,27 +101,12 @@ rm -v /home/vagrant/Windows.iso
 
 Execute `sudo virsh dumpxml cuckoo1 | grep "mac address"` to find out `cuckoo1` MAC address. For this example, assume it's MAC address is `'52:54:00:7e:3a:8e'`.
 
-Make sure to shutdown all guests. Execute `sudo virsh net-edit default` and add `<host mac='52:54:00:7e:3a:8e' ip='192.168.122.2'/>` line inside `<dhcp></dhcp>`. For example:
+Shutdown guest and execute the following command to set static DHCP network for the `cuckoo1` VM:
 ```
-<network>
-  <name>default</name>
-  <uuid>427f0047-b99e-40c7-9d7e-d1df39d5e353</uuid>
-  <bridge name='virbr0' stp='on' delay='0'/>
-  <mac address='52:54:00:4d:75:81'/>
-  <ip address='192.168.122.1' netmask='255.255.255.0'>
-    <dhcp>
-      <range start='192.168.122.2' end='192.168.122.254'/>
-      <host mac='52:54:00:7e:3a:8e' ip='192.168.122.2'/>
-    </dhcp>
-  </ip>
-</network>
+sudo virsh net-update default add-last ip-dhcp-host "<host mac='52:54:00:7e:3a:8e' name='cuckoo1' ip='192.168.122.2'/>" --live --config
 ```
 
-Apply changes to the network:
-```
-sudo virsh net-destroy default
-sudo virsh net-start default
-```
+To verify, execute `sudo virsh net-dumpxml default` and make sure the IP address for the `cuckoo1` VM is listed.
 
 
 ## Configure CAPEv2
