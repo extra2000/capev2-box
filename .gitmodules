@@ -4,6 +4,3 @@
 [submodule "capev2/doomedraven-tools"]
 	path = capev2/doomedraven-tools
 	url = https://github.com/extra2000/doomedraven-tools.git
-[submodule "salt/roots/formulas/zabbix-agent-formula"]
-	path = salt/roots/formulas/zabbix-agent-formula
-	url = https://github.com/extra2000/zabbix-agent-formula.git

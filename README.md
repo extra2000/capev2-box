@@ -17,11 +17,6 @@ $ git clone --recursive https://github.com/extra2000/capev2-box
 
 ## Creating Vagrant box
 
-Create pillar file based on the example:
-```
-$ cp -v salt/roots/pillar/zabbix-agent.sls.example salt/roots/pillar/zabbix-agent.sls
-```
-
 Create a vagrant file based on the example (you may need to increase memory from `v.memory = "5120"` to `v.memory = "12288"`) and then create the Vagrant box (you can change to `--provider=libvirt` if you are using Libvirt provider):
 ```
 $ cp -v vagrant/examples/Vagrantfile.capev2-box.ubuntu-2004.x86_64.example vagrant/Vagrantfile.capev2-box
@@ -71,7 +66,7 @@ $ exit
 $ vagrant reload
 ```
 
-Disable swap memory, and then install Zabbix agent:
+Disable swap memory:
 ```
 $ vagrant ssh capev2-box -- sudo salt-call state.highstate
 ```
