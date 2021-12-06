@@ -131,7 +131,6 @@ Set the following values in `/opt/CAPEv2/conf/kvm.conf`:
 ip = 192.168.122.2
 tags = x64
 snapshot = clean
-resultserver_ip = 192.168.122.1
 ```
 
 Disable rate limiting and enable other features in `/opt/CAPEv2/conf/api.conf`:
