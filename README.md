@@ -17,10 +17,9 @@ $ git clone --recursive https://github.com/extra2000/capev2-box
 
 ## Creating Vagrant box
 
-Create NGINX pillar file based on the example. Optionally you can change the value in the `salt/roots/pillar/nginx.sls`:
+Create pillar file based on the example:
 ```
 $ cp -v salt/roots/pillar/zabbix-agent.sls.example salt/roots/pillar/zabbix-agent.sls
-$ cp -v salt/roots/pillar/nginx.sls.example salt/roots/pillar/nginx.sls
 ```
 
 Create a vagrant file based on the example (you may need to increase memory from `v.memory = "5120"` to `v.memory = "12288"`) and then create the Vagrant box (you can change to `--provider=libvirt` if you are using Libvirt provider):
@@ -72,10 +71,9 @@ $ exit
 $ vagrant reload
 ```
 
-Disable swap memory, install Zabbix agent, and then install NGINX with self-signed certificate:
+Disable swap memory, and then install Zabbix agent:
 ```
 $ vagrant ssh capev2-box -- sudo salt-call state.highstate
-$ vagrant ssh capev2-box -- sudo salt-call state.sls https
 ```
 
 
