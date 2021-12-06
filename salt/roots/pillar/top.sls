@@ -1,4 +1,3 @@
 base:
   '*':
-    - podman
     - zabbix-agent

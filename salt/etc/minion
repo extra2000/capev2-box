@@ -392,7 +392,6 @@ file_client: local
 file_roots:
   base:
     - /srv/salt
-    - /srv/formulas/podman-formula
     - /srv/formulas/zabbix-agent-formula
 
 # By default, the Salt fileserver recurses fully into all defined environments

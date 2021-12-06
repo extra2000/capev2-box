@@ -1,2 +1,0 @@
-podman:
-  username: vagrant
