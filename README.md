@@ -133,6 +133,12 @@ tags = x64
 snapshot = clean
 ```
 
+Set the following values in `/opt/CAPEv2/conf/routing.conf`:
+```
+[tor]
+enabled = no
+```
+
 Disable rate limiting and enable other features in `/opt/CAPEv2/conf/api.conf`:
 ```
 [api]
