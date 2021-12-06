@@ -21,7 +21,6 @@ Create NGINX pillar file based on the example. Optionally you can change the val
 ```
 $ cp -v salt/roots/pillar/zabbix-agent.sls.example salt/roots/pillar/zabbix-agent.sls
 $ cp -v salt/roots/pillar/nginx.sls.example salt/roots/pillar/nginx.sls
-$ cp -v salt/roots/pillar/filebeat.sls.example salt/roots/pillar/filebeat.sls
 ```
 
 Create a vagrant file based on the example (you may need to increase memory from `v.memory = "5120"` to `v.memory = "12288"`) and then create the Vagrant box (you can change to `--provider=libvirt` if you are using Libvirt provider):
@@ -501,13 +500,6 @@ $ sudo virsh net-start default
 ```
 
 However, the VM will not have Internet access.
-
-
-## Deploy Filebeat to log CAPEv2 services journal to ELK stack (optional)
-
-```
-$ vagrant ssh capev2-box -- sudo salt-call state.sls filebeat
-```
 
 
 ## Accessing CAPEv2 web page
