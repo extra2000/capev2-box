@@ -413,9 +413,9 @@ Let the VM idle for a few minutes and then minimize the `Powershell` window to m
 sudo virsh snapshot-create-as cuckoo1 --name clean
 ```
 
-Then, turn off `cuckoo1` VM:
+Then, shutdown `cuckoo1` VM:
 ```
-sudo virsh destroy cuckoo1
+sudo virsh shutdown cuckoo1
 ```
 
 Start all CAPEv2 services:
