@@ -23,11 +23,6 @@ cp -v vagrant/examples/Vagrantfile.capev2-box.ubuntu-2004.x86_64.example vagrant
 vagrant up --provider=libvirt
 ```
 
-Set timezone to your location, for example:
-```
-vagrant ssh capev2-box -- sudo timedatectl set-timezone Asia/Kuala_Lumpur
-```
-
 
 ## CAPEv2 Installations
 
@@ -68,6 +63,11 @@ vagrant reload
 Disable swap memory:
 ```
 vagrant ssh capev2-box -- sudo salt-call state.highstate
+```
+
+Set timezone to your location, for example:
+```
+vagrant ssh capev2-box -- sudo timedatectl set-timezone Asia/Kuala_Lumpur
 ```
 
 
