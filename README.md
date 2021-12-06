@@ -45,7 +45,6 @@ vagrant ssh capev2-box
 sudo cp -rv /opt/CAPEv2{-source,}
 USER=cape; sudo bash /opt/doomedraven-tools/Sandbox/cape2.sh base
 sudo chown -R cape:cape /opt/CAPEv2
-sudo mkdir -pv /var/log/capev2
 sudo systemctl set-default multi-user.target
 ```
 
@@ -361,7 +360,7 @@ enabled = yes
 zip_pwd = infected
 ```
 
-In `/lib/systemd/system/cape-processor.service`, set `-p7` to `-p1`, `RestartSec=1m`, and timeout 1 hour setting `-pt 900` to `-pt 3600`. This will reduce the number of parallel processing from 7 CPUs to 1 CPU to reduce memory consumption. Since the `cape-processor.service` is just a script, not a daemon, the `RestartSec=1m` will ensure the `cape-processor.service` will be executed for every 1 minute. Then, redirect `stdout` and `stderr` to `/var/log/capev2/cape-processor.log`. For example:
+In `/lib/systemd/system/cape-processor.service`, set `-p7` to `-p1`, `RestartSec=1m`, and timeout 1 hour setting `-pt 900` to `-pt 3600`. This will reduce the number of parallel processing from 7 CPUs to 1 CPU to reduce memory consumption. Since the `cape-processor.service` is just a script, not a daemon, the `RestartSec=1m` will ensure the `cape-processor.service` will be executed for every 1 minute. For example:
 ```
 ...
 [Service]
@@ -369,36 +368,14 @@ In `/lib/systemd/system/cape-processor.service`, set `-p7` to `-p1`, `RestartSec
 ExecStart=/usr/bin/python3 process.py -p1 auto -pt 3600
 ...
 RestartSec=1m
-StandardOutput=append:/var/log/capev2/cape-processor.log
-StandardError=append:/var/log/capev2/cape-processor.log
 ```
 
-In `/lib/systemd/system/cape-rooter.service`, redirect `stdout` and `stderr` to `/var/log/capev2/cape-rooter.log`:
-```
-...
-[Service]
-...
-StandardOutput=append:/var/log/capev2/cape-rooter.log
-StandardError=append:/var/log/capev2/cape-rooter.log
-```
-
-In `/lib/systemd/system/cape-web.service`, redirect `stdout` and `stderr` to `/var/log/capev2/cape-web.log`:
-```
-...
-[Service]
-...
-StandardOutput=append:/var/log/capev2/cape-web.log
-StandardError=append:/var/log/capev2/cape-web.log
-```
-
-In `/lib/systemd/system/cape.service`, change from `RestartSec=5m` to `RestartSec=1m`. Also redirect `stdout` and `stderr` to `/var/log/capev2/cape.log`:
+In `/lib/systemd/system/cape.service`, change from `RestartSec=5m` to `RestartSec=1m`:
 ```
 ...
 [Service]
 ...
 RestartSec=1m
-StandardOutput=append:/var/log/capev2/cape.log
-StandardError=append:/var/log/capev2/cape.log
 ...
 ```
 
