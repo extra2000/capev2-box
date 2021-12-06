@@ -189,6 +189,9 @@ enabled = yes
 
 Configure `/opt/CAPEv2/conf/processing.conf`:
 ```
+[antiransomware]
+enabled = yes
+
 [virustotal]
 enabled = no
 
