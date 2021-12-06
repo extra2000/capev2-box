@@ -11,7 +11,7 @@ Developer box for [CAPEv2](https://github.com/kevoreilly/CAPEv2).
 
 Clone the repository:
 ```
-$ git clone --recursive https://github.com/extra2000/capev2-box
+git clone --recursive https://github.com/extra2000/capev2-box
 ```
 
 
@@ -19,13 +19,13 @@ $ git clone --recursive https://github.com/extra2000/capev2-box
 
 Create a vagrant file based on the example (you may need to increase memory from `v.memory = "5120"` to `v.memory = "12288"`) and then create the Vagrant box (you can change to `--provider=libvirt` if you are using Libvirt provider):
 ```
-$ cp -v vagrant/examples/Vagrantfile.capev2-box.ubuntu-2004.x86_64.example vagrant/Vagrantfile.capev2-box
-$ vagrant up --provider=virtualbox
+cp -v vagrant/examples/Vagrantfile.capev2-box.ubuntu-2004.x86_64.example vagrant/Vagrantfile.capev2-box
+vagrant up --provider=virtualbox
 ```
 
 Set timezone to your location, for example:
 ```
-$ vagrant ssh capev2-box -- sudo timedatectl set-timezone Asia/Kuala_Lumpur
+vagrant ssh capev2-box -- sudo timedatectl set-timezone Asia/Kuala_Lumpur
 ```
 
 
@@ -33,42 +33,42 @@ $ vagrant ssh capev2-box -- sudo timedatectl set-timezone Asia/Kuala_Lumpur
 
 Install KVM virtualizations:
 ```
-$ vagrant ssh capev2-box
-$ sudo /opt/doomedraven-tools/Virtualization/kvm-qemu.sh all
-$ exit
-$ vagrant reload
+vagrant ssh capev2-box
+sudo /opt/doomedraven-tools/Virtualization/kvm-qemu.sh all
+exit
+vagrant reload
 ```
 
 Install CAPEv2:
 ```
-$ vagrant ssh capev2-box
-$ sudo cp -rv /opt/CAPEv2{-source,}
-$ USER=cape; sudo bash /opt/doomedraven-tools/Sandbox/cape2.sh base
-$ sudo chown -R cape:cape /opt/CAPEv2
-$ sudo mkdir -pv /var/log/capev2
-$ sudo systemctl set-default multi-user.target
+vagrant ssh capev2-box
+sudo cp -rv /opt/CAPEv2{-source,}
+USER=cape; sudo bash /opt/doomedraven-tools/Sandbox/cape2.sh base
+sudo chown -R cape:cape /opt/CAPEv2
+sudo mkdir -pv /var/log/capev2
+sudo systemctl set-default multi-user.target
 ```
 
 Fix Volatility3 issue:
 ```
-$ sudo chown -R cape:cape /usr/local/lib/python3.8/dist-packages/volatility3/symbols
+sudo chown -R cape:cape /usr/local/lib/python3.8/dist-packages/volatility3/symbols
 ```
 
 Fix TRiD issue:
 ```
-$ sudo chmod a+x /opt/CAPEv2/data/trid/trid
-$ sudo rm -f /usr/lib/locale/locale-archive && sudo locale-gen --no-archive
+sudo chmod a+x /opt/CAPEv2/data/trid/trid
+sudo rm -f /usr/lib/locale/locale-archive && sudo locale-gen --no-archive
 ```
 
 Exit and reload Vagrant box:
 ```
-$ exit
-$ vagrant reload
+exit
+vagrant reload
 ```
 
 Disable swap memory:
 ```
-$ vagrant ssh capev2-box -- sudo salt-call state.highstate
+vagrant ssh capev2-box -- sudo salt-call state.highstate
 ```
 
 
@@ -76,33 +76,33 @@ $ vagrant ssh capev2-box -- sudo salt-call state.highstate
 
 Rename `Windows.iso` to your ISO name for the Windows 7 installation ISO file:
 ```
-$ vagrant scp Windows.iso capev2-box:/home/vagrant/Windows.iso
-$ vagrant ssh capev2-box
-$ sudo virt-install --name cuckoo1 --memory 4096 --vcpus 2 --machine pc --os-variant win7 --network="default",model=e1000 --cdrom /home/vagrant/Windows.iso --disk path=/var/lib/libvirt/images/cuckoo1.qcow2,size=32,bus=sata,format=qcow2 --graphics vnc,listen=0.0.0.0,port=5900 --noautoconsole
+vagrant scp Windows.iso capev2-box:/home/vagrant/Windows.iso
+vagrant ssh capev2-box
+sudo virt-install --name cuckoo1 --memory 4096 --vcpus 2 --machine pc --os-variant win7 --network="default",model=e1000 --cdrom /home/vagrant/Windows.iso --disk path=/var/lib/libvirt/images/cuckoo1.qcow2,size=32,bus=sata,format=qcow2 --graphics vnc,listen=0.0.0.0,port=5900 --noautoconsole
 ```
 
 On host, use `vncviewer` from [TigerVNC](https://tigervnc.org/) command to view Windows 7 installations (you may need to replace `capev2-box` with it's IP address):
 ```
-$ vncviewer capev2-box:5900
+vncviewer capev2-box:5900
 ```
 
 After finished installations, `cuckoo1` VM will shutdown. Execute the following command to continue installations:
 ```
-$ sudo virsh start cuckoo1
+sudo virsh start cuckoo1
 ```
 
-Then, shutdown `cuckoo1` and disconnect the installation ISO media (use `$ sudo virsh domblklist cuckoo1` to find out whether the installation ISO is `sda` or `hda`):
+Then, shutdown `cuckoo1` and disconnect the installation ISO media (use `sudo virsh domblklist cuckoo1` to find out whether the installation ISO is `sda` or `hda`):
 ```
-$ sudo virsh change-media cuckoo1 hda --eject --config
-$ rm -v /home/vagrant/Windows.iso
+sudo virsh change-media cuckoo1 hda --eject --config
+rm -v /home/vagrant/Windows.iso
 ```
 
 
 ## Static DHCP Network for Guests
 
-Execute `$ sudo virsh dumpxml cuckoo1 | grep "mac address"` to find out `cuckoo1` MAC address. For this example, assume it's MAC address is `'52:54:00:7e:3a:8e'`.
+Execute `sudo virsh dumpxml cuckoo1 | grep "mac address"` to find out `cuckoo1` MAC address. For this example, assume it's MAC address is `'52:54:00:7e:3a:8e'`.
 
-Make sure to shutdown all guests. Execute `$ sudo virsh net-edit default` and add `<host mac='52:54:00:7e:3a:8e' ip='192.168.122.2'/>` line inside `<dhcp></dhcp>`. For example:
+Make sure to shutdown all guests. Execute `sudo virsh net-edit default` and add `<host mac='52:54:00:7e:3a:8e' ip='192.168.122.2'/>` line inside `<dhcp></dhcp>`. For example:
 ```
 <network>
   <name>default</name>
@@ -120,8 +120,8 @@ Make sure to shutdown all guests. Execute `$ sudo virsh net-edit default` and ad
 
 Apply changes to the network:
 ```
-$ sudo virsh net-destroy default
-$ sudo virsh net-start default
+sudo virsh net-destroy default
+sudo virsh net-start default
 ```
 
 
@@ -404,13 +404,13 @@ StandardError=append:/var/log/capev2/cape.log
 
 Reload systemd to apply changes:
 ```
-$ sudo systemctl daemon-reload
+sudo systemctl daemon-reload
 ```
 
 Finally, restart all `cape` services:
 ```
-$ sudo systemctl stop cape-processor.service cape-rooter.service cape-web.service cape.service
-$ sudo systemctl start cape-processor.service cape-rooter.service cape-web.service cape.service
+sudo systemctl stop cape-processor.service cape-rooter.service cape-web.service cape.service
+sudo systemctl start cape-processor.service cape-rooter.service cape-web.service cape.service
 ```
 
 
@@ -418,12 +418,12 @@ $ sudo systemctl start cape-processor.service cape-rooter.service cape-web.servi
 
 During Agent installations, make sure to stop all CAPEv2 services:
 ```
-$ sudo systemctl stop cape-processor.service cape-rooter.service cape-web.service cape.service
+sudo systemctl stop cape-processor.service cape-rooter.service cape-web.service cape.service
 ```
 
 Start `cuckoo1` VM:
 ```
-$ sudo virsh start cuckoo1
+sudo virsh start cuckoo1
 ```
 
 Then, setup the following prerequisites:
@@ -441,25 +441,25 @@ Shutdown `cuckoo1`.
 
 Mount QCOW2 Image to Host. Execute the following command on host to load `nbd` module and connect the `qcow2` image to host:
 ```
-$ sudo modprobe nbd max_part=8
-$ sudo qemu-nbd --connect=/dev/nbd0 /var/lib/libvirt/images/cuckoo1.qcow2
-$ sudo mount -v /dev/nbd0p2 /mnt
+sudo modprobe nbd max_part=8
+sudo qemu-nbd --connect=/dev/nbd0 /var/lib/libvirt/images/cuckoo1.qcow2
+sudo mount -v /dev/nbd0p2 /mnt
 ```
 
 Copy CAPEv2 agent into `cuckoo1.qcow2`:
 ```
-$ cp -v /opt/CAPEv2-source/agent/agent.py /mnt/agent.py
+cp -v /opt/CAPEv2-source/agent/agent.py /mnt/agent.py
 ```
 
 Unmount and disconnect `/dev/nbd0`:
 ```
-$ sudo umount -v /mnt
-$ sudo qemu-nbd --disconnect /dev/nbd0
+sudo umount -v /mnt
+sudo qemu-nbd --disconnect /dev/nbd0
 ```
 
 Start `cuckoo1` VM:
 ```
-$ sudo virsh start cuckoo1
+sudo virsh start cuckoo1
 ```
 
 Run `PowerShell` as `Administrator`:
@@ -470,26 +470,26 @@ Run `PowerShell` as `Administrator`:
 
 Let the VM idle for a few minutes and then minimize the `Powershell` window to minimize the number of screenshots. Then while the VM is running, create snapshot:
 ```
-$ sudo virsh snapshot-create-as cuckoo1 --name clean
+sudo virsh snapshot-create-as cuckoo1 --name clean
 ```
 
 Then, turn off `cuckoo1` VM:
 ```
-$ sudo virsh destroy cuckoo1
+sudo virsh destroy cuckoo1
 ```
 
 Start all CAPEv2 services:
 ```
-$ sudo systemctl start cape-processor.service cape-rooter.service cape-web.service cape.service
+sudo systemctl start cape-processor.service cape-rooter.service cape-web.service cape.service
 ```
 
 
 ## Hardening Sandbox Security
 
-To change network from NAT to Host-only, Execute `$ sudo virsh net-edit default` and remove a line containing `<forward mode='nat'/>`. Then, apply changes:
+To change network from NAT to Host-only, Execute `sudo virsh net-edit default` and remove a line containing `<forward mode='nat'/>`. Then, apply changes:
 ```
-$ sudo virsh net-destroy default
-$ sudo virsh net-start default
+sudo virsh net-destroy default
+sudo virsh net-start default
 ```
 
 However, the VM will not have Internet access.
@@ -509,22 +509,22 @@ To monitor VM, you can use VNC.
 
 For example to cleanup old data, either delete files older than 7 days:
 ```
-$ cd /opt/CAPEv2/utils
-$ sudo su cape -c "python3 cleaners.py --delete-older-than-days 7"
+cd /opt/CAPEv2/utils
+sudo su cape -c "python3 cleaners.py --delete-older-than-days 7"
 ```
 
 or delete tasks range from 1 to 275:
 ```
-$ cd /opt/CAPEv2/utils
-$ sudo su cape -c "python3 cleaners.py -drs 1 -dre 275"
+cd /opt/CAPEv2/utils
+sudo su cape -c "python3 cleaners.py -drs 1 -dre 275"
 ```
 
 You may need to update rules and feed everyday using the following command:
 ```
-$ cd /opt/CAPEv2/utils
-$ sudo su cape -c "python3 community.py -waf -cr"
-$ sudo systemctl stop cape-processor.service
-$ sudo systemctl start cape-processor.service
+cd /opt/CAPEv2/utils
+sudo su cape -c "python3 community.py -waf -cr"
+sudo systemctl stop cape-processor.service
+sudo systemctl start cape-processor.service
 ```
 
 
@@ -534,32 +534,32 @@ This Section is applicable for Linux host and Libvirt provider. The following co
 
 Make sure to shutdown the Vagrant box:
 ```
-$ vagrant halt capev2-box
+vagrant halt capev2-box
 ```
 
 Expand the Vagrant box storage with extra 200G of the current size:
 ```
-$ sudo qemu-img resize /path/to/capev2-box_capev2-box.img +200G
+sudo qemu-img resize /path/to/capev2-box_capev2-box.img +200G
 ```
 
 Load `nbd` module and bind the image to host:
 ```
-$ sudo modprobe nbd max_part=8
-$ sudo qemu-nbd --connect=/dev/nbd0 /path/to/capev2-box_capev2-box.img
+sudo modprobe nbd max_part=8
+sudo qemu-nbd --connect=/dev/nbd0 /path/to/capev2-box_capev2-box.img
 ```
 
 Check which partition to resize via `parted` `print` command. In this case, it is `/dev/nbd0p3`. Note that if `parted` detects that the drive has extra space and `parted` able to fix it, do fix it:
 ```
-$ sudo parted /dev/nbd0 print
-$ sudo e2fsck -f /dev/nbd0p3
-$ sudo parted /dev/nbd0 print
-$ sudo parted /dev/nbd0 -- resizepart 3 -1
-$ sudo resize2fs /dev/nbd0p3
-$ sudo e2fsck -f /dev/nbd0p3
-$ sudo parted /dev/nbd0 print
+sudo parted /dev/nbd0 print
+sudo e2fsck -f /dev/nbd0p3
+sudo parted /dev/nbd0 print
+sudo parted /dev/nbd0 -- resizepart 3 -1
+sudo resize2fs /dev/nbd0p3
+sudo e2fsck -f /dev/nbd0p3
+sudo parted /dev/nbd0 print
 ```
 
 After finished resizing, disconnect the image:
 ```
-$ sudo qemu-nbd --disconnect /dev/nbd0
+sudo qemu-nbd --disconnect /dev/nbd0
 ```
