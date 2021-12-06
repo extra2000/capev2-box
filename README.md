@@ -54,6 +54,11 @@ sudo chmod a+x /opt/CAPEv2/data/trid/trid
 sudo rm -f /usr/lib/locale/locale-archive && sudo locale-gen --no-archive
 ```
 
+Install optional Python3 modules used by CAPEv2:
+```
+sudo su cape -c "python3 -m pip install --user imagehash"
+```
+
 Exit and reload Vagrant box:
 ```
 exit
