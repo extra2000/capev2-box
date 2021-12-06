@@ -372,7 +372,7 @@ Then, setup the following prerequisites:
 
 Download https://bootstrap.pypa.io/get-pip.py, run `Command Prompt` as `Administrator` and then execute the following command:
 ```
-> cd C:\Users\${USER}\Downloads
+> cd C:\Users\%USERNAME%\Downloads
 > python get-pip.py
 > python -m pip install pillow pywin32
 ```
