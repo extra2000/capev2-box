@@ -210,7 +210,7 @@ enabled = yes
 enabled = yes
 on_demand = no
 static = yes
-cape = yes
+cape = no
 procdump = yes
 
 [decompression]
