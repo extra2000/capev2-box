@@ -472,6 +472,12 @@ cd /opt/CAPEv2/utils
 sudo su cape -c "python3 cleaners.py -drs 1 -dre 275"
 ```
 
+or delete failed tasks:
+```
+cd /opt/CAPEv2/utils
+sudo su cape -c "python3 cleaners.py --failed-clean"
+```
+
 You may need to update rules and feed everyday using the following command:
 ```
 cd /opt/CAPEv2/utils
