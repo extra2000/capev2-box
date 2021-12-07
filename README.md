@@ -82,7 +82,7 @@ Rename `Windows.iso` to your ISO name for the Windows 7 installation ISO file:
 ```
 vagrant scp Windows.iso capev2-box:/home/vagrant/Windows.iso
 vagrant ssh capev2-box
-sudo virt-install --name cuckoo1 --memory 4096 --vcpus 2 --machine pc --os-variant win7 --network="default",model=e1000 --cdrom /home/vagrant/Windows.iso --disk path=/var/lib/libvirt/images/cuckoo1.qcow2,size=32,bus=sata,format=qcow2 --graphics vnc,listen=0.0.0.0,port=5900 --noautoconsole
+sudo virt-install --name win7-64-01 --memory 4096 --vcpus 2 --machine pc --os-variant win7 --network="default",model=e1000 --cdrom /home/vagrant/Windows.iso --disk path=/var/lib/libvirt/images/win7-64-01.qcow2,size=32,bus=sata,format=qcow2 --graphics vnc,listen=0.0.0.0,port=5900 --noautoconsole
 ```
 
 On host, use `vncviewer` from [TigerVNC](https://tigervnc.org/) command to view Windows 7 installations (you may need to replace `capev2-box` with it's IP address):
@@ -90,28 +90,28 @@ On host, use `vncviewer` from [TigerVNC](https://tigervnc.org/) command to view 
 vncviewer capev2-box:5900
 ```
 
-After finished installations, `cuckoo1` VM will shutdown. Execute the following command to continue installations:
+After finished installations, `win7-64-01` VM will shutdown. Execute the following command to continue installations:
 ```
-sudo virsh start cuckoo1
+sudo virsh start win7-64-01
 ```
 
-Then, shutdown `cuckoo1` and disconnect the installation ISO media (use `sudo virsh domblklist cuckoo1` to find out whether the installation ISO is `sda` or `hda`):
+Then, shutdown `win7-64-01` and disconnect the installation ISO media (use `sudo virsh domblklist win7-64-01` to find out whether the installation ISO is `sda` or `hda`):
 ```
-sudo virsh change-media cuckoo1 hda --eject --config
+sudo virsh change-media win7-64-01 hda --eject --config
 rm -v /home/vagrant/Windows.iso
 ```
 
 
 ## Static DHCP Network for Guests
 
-Execute `sudo virsh dumpxml cuckoo1 | grep "mac address"` to find out `cuckoo1` MAC address. For this example, assume it's MAC address is `'52:54:00:7e:3a:8e'`.
+Execute `sudo virsh dumpxml win7-64-01 | grep "mac address"` to find out `win7-64-01` MAC address. For this example, assume it's MAC address is `'52:54:00:7e:3a:8e'`.
 
-Shutdown guest and execute the following command to set static DHCP network for the `cuckoo1` VM:
+Shutdown guest and execute the following command to set static DHCP network for the `win7-64-01` VM:
 ```
-sudo virsh net-update default add-last ip-dhcp-host "<host mac='52:54:00:7e:3a:8e' name='cuckoo1' ip='192.168.122.2'/>" --live --config
+sudo virsh net-update default add-last ip-dhcp-host "<host mac='52:54:00:7e:3a:8e' name='win7-64-01' ip='192.168.122.2'/>" --live --config
 ```
 
-To verify, execute `sudo virsh net-dumpxml default` and make sure the IP address for the `cuckoo1` VM is listed.
+To verify, execute `sudo virsh net-dumpxml default` and make sure the IP address for the `win7-64-01` VM is listed.
 
 
 ## Configure CAPEv2
@@ -132,7 +132,11 @@ ip = 192.168.122.1
 
 Set the following values in `/opt/CAPEv2/conf/kvm.conf`:
 ```
-[cuckoo1]
+[kvm]
+machines = win7-64-01
+
+[win7-64-01]
+label = win7-64-01
 ip = 192.168.122.2
 tags = x64
 snapshot = clean
@@ -377,9 +381,9 @@ During Agent installations, make sure to stop all CAPEv2 services:
 sudo systemctl stop cape-processor.service cape-rooter.service cape-web.service cape.service
 ```
 
-Start `cuckoo1` VM:
+Start `win7-64-01` VM:
 ```
-sudo virsh start cuckoo1
+sudo virsh start win7-64-01
 ```
 
 Then, setup the following prerequisites:
@@ -393,16 +397,16 @@ Download https://bootstrap.pypa.io/get-pip.py, run `Command Prompt` as `Administ
 > python -m pip install pillow pywin32
 ```
 
-Shutdown `cuckoo1`.
+Shutdown `win7-64-01`.
 
 Mount QCOW2 Image to Host. Execute the following command on host to load `nbd` module and connect the `qcow2` image to host:
 ```
 sudo modprobe nbd max_part=8
-sudo qemu-nbd --connect=/dev/nbd0 /var/lib/libvirt/images/cuckoo1.qcow2
+sudo qemu-nbd --connect=/dev/nbd0 /var/lib/libvirt/images/win7-64-01.qcow2
 sudo mount -v /dev/nbd0p2 /mnt
 ```
 
-Copy CAPEv2 agent into `cuckoo1.qcow2`:
+Copy CAPEv2 agent into `win7-64-01.qcow2`:
 ```
 cp -v /opt/CAPEv2-source/agent/agent.py /mnt/agent.py
 ```
@@ -413,9 +417,9 @@ sudo umount -v /mnt
 sudo qemu-nbd --disconnect /dev/nbd0
 ```
 
-Start `cuckoo1` VM:
+Start `win7-64-01` VM:
 ```
-sudo virsh start cuckoo1
+sudo virsh start win7-64-01
 ```
 
 Run `PowerShell` as `Administrator`:
@@ -426,12 +430,12 @@ Run `PowerShell` as `Administrator`:
 
 Let the VM idle for a few minutes and then minimize the `Powershell` window to minimize the number of screenshots. Then while the VM is running, create snapshot:
 ```
-sudo virsh snapshot-create-as cuckoo1 --name clean
+sudo virsh snapshot-create-as win7-64-01 --name clean
 ```
 
-Then, shutdown `cuckoo1` VM:
+Then, shutdown `win7-64-01` VM:
 ```
-sudo virsh shutdown cuckoo1
+sudo virsh shutdown win7-64-01
 ```
 
 Start all CAPEv2 services:
