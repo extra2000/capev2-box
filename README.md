@@ -138,7 +138,7 @@ machines = win7-64-01
 [win7-64-01]
 label = win7-64-01
 ip = 192.168.122.2
-tags = x64
+tags = x64,win7_sp1_64bit
 snapshot = clean
 ```
 
