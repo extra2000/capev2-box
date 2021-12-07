@@ -1,5 +1,51 @@
 # Changelog
 
+## [3.0.0](https://github.com/extra2000/capev2-box/compare/v2.0.0...v3.0.0) (2021-12-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **saltstack:** `zabbix-agent-formula` has been removed
+* **saltstack:** `podman-formula` has been removed
+* **saltstack:** `nginx-formula` has been removed
+* **saltstack:** `filebeat-formula` has been removed
+
+### Features
+
+* **capev2/CAPEv2:** update commit ([f99120a](https://github.com/extra2000/capev2-box/commit/f99120ab71401f1f157ca57448d380f452d513b5))
+* **capev2/doomedraven-tools:** update commit ([afe9784](https://github.com/extra2000/capev2-box/commit/afe97840229e3a019d70d3b5f13fa18141be0fc5))
+
+
+### Code Refactoring
+
+* **saltstack:** remove `filebeat-formula` ([366a166](https://github.com/extra2000/capev2-box/commit/366a16667ea77526a9b90fb5c5e80ff8da5481fc))
+* **saltstack:** remove `nginx-formula` ([7aa48d0](https://github.com/extra2000/capev2-box/commit/7aa48d0a175834c4b3027a44acbd9cc32949595f))
+* **saltstack:** remove `podman-formula` ([2c8db26](https://github.com/extra2000/capev2-box/commit/2c8db26eb6e3e595212012ef04374f0643857c9c))
+* **saltstack:** remove `zabbix-agent-formula` ([8c3a7c8](https://github.com/extra2000/capev2-box/commit/8c3a7c88f73703aab52b14d23acac713c3002f12))
+
+
+### Documentations
+
+* **README:** add `imagehash` python module installation ([a0d039a](https://github.com/extra2000/capev2-box/commit/a0d039a79fe4db1aa11fe3edf18c6aa0ffd6fd73))
+* **README:** add `win7_sp1_64bit` tag in `/opt/CAPEv2/conf/kvm.conf` ([5279a34](https://github.com/extra2000/capev2-box/commit/5279a34076b78dee960977c9521149e2df1b224b))
+* **README:** add instructions for MISP integrations ([799fb70](https://github.com/extra2000/capev2-box/commit/799fb70f250b606c36ee1dcc189a42873147cdfd))
+* **README:** add instructions to clean failed tasks ([2a0337f](https://github.com/extra2000/capev2-box/commit/2a0337fa37682a4f3c2fc8af8a392b3377f8d534))
+* **README:** add notes on memory usage for `memory.conf` ([a24c030](https://github.com/extra2000/capev2-box/commit/a24c030479addd84b96f446e9476ff96e98ff316))
+* **README:** change `${USER}` to `%USERNAME%` for `cmd` ([e1530fa](https://github.com/extra2000/capev2-box/commit/e1530fa5edaf96d8568c25a6dcbaea1d2ad5d21b))
+* **README:** change `turn off` to `shutdown` after taking snapshot ([2ea0d66](https://github.com/extra2000/capev2-box/commit/2ea0d668e33f323ed21b6712cc07466be51bc821))
+* **README:** change guest name from `cuckoo1` to `win7-64-01` ([a142d78](https://github.com/extra2000/capev2-box/commit/a142d78ae1b8afe630140fb2efbde945bb3c7a48))
+* **README:** default vagrant to Libvirt provider ([e5b25cb](https://github.com/extra2000/capev2-box/commit/e5b25cb1aba1e5f3cc447060b3da8d8323b21a8c))
+* **README:** disable `tor` by default ([d0d6c4f](https://github.com/extra2000/capev2-box/commit/d0d6c4f0de8db0d51aab1f488e025d4c5329bb7e))
+* **README:** disable Flare CAPA analysis on CAPE payload to reduce host's memory usage during processing caused by ransomware ([41114bb](https://github.com/extra2000/capev2-box/commit/41114bbd0d237a6c30e588da2495714241f0f164))
+* **README:** enable `antiransomware` in `/opt/CAPEv2/conf/processing.conf` ([f097d4c](https://github.com/extra2000/capev2-box/commit/f097d4c92bd6685a35c8ba623b55ba9720b8a31b))
+* **README:** improve `libvirt` static DHCP configurations for the `cuckoo1` VM ([ebaa925](https://github.com/extra2000/capev2-box/commit/ebaa925dbe2ea1deebccccf6f04af0ad4389f896))
+* **README:** in `/opt/CAPEv2/conf/kvm.conf`, configure `tags` after `ip` ([1656d1f](https://github.com/extra2000/capev2-box/commit/1656d1fc37c78006a6572d28b3f5125405c46ceb))
+* **README:** move timezone setting instruction at the end of CAPEv2 installation because the timezone got reset to UTC by the installation scripts after finished installations ([28bbd47](https://github.com/extra2000/capev2-box/commit/28bbd47c4f6b66d26bbaadea176db6d2e1128153))
+* **README:** remove `/var/log/capev2` logging ([8f2162f](https://github.com/extra2000/capev2-box/commit/8f2162f9714b44d387ffc7144364880b11ba6786))
+* **README:** remove `$` sign to simplify copy/paste ([b53e412](https://github.com/extra2000/capev2-box/commit/b53e41252ca8d678db0d8aef3c697952911a6b8e))
+* **README:** remove `resultserver_ip` from `/opt/CAPEv2/conf/kvm.conf` because of CAPEv2 new changes ([eb55c6f](https://github.com/extra2000/capev2-box/commit/eb55c6f44eae52f167277b70d83ead63d090609b))
+* **README:** remove deprecated `display_browser_martians`, `display_office_martians`, display_shrike`, `expanded_dashboard`, `display_et_portal`, `display_pt_portal`, and `zipped_download` sections from `/opt/CAPEv2/conf/auxiliary.conf` ([f85c0ef](https://github.com/extra2000/capev2-box/commit/f85c0efa845559b1dd4f2b1c5adb1f65e6d689b4))
+
 ## [2.0.0](https://github.com/extra2000/capev2-box/compare/v1.3.0...v2.0.0) (2021-03-09)
 
 
