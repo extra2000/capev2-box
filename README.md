@@ -283,11 +283,14 @@ registry = yes
 mutexes = yes
 ```
 
-Configure `/opt/CAPEv2/conf/memory.conf`:
+Disable `dostrings` in `/opt/CAPEv2/conf/memory.conf`:
 ```
 [basic]
 dostrings = no
+```
 
+Optinally, enable other options in the `/opt/CAPEv2/conf/memory.conf` (*NOTE: May require more than 32GB of RAM*):
+```
 [malfind]
 enabled = yes
 
