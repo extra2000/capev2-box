@@ -529,3 +529,18 @@ After finished resizing, disconnect the image:
 ```
 sudo qemu-nbd --disconnect /dev/nbd0
 ```
+
+
+## Disable CAPEv2 cronjobs
+
+CAPEv2 cronjobs may pull updates with breaking changes which may cause unexpected error. To disable CAPEv2 cronjobs, execute the following command to edit cronjobs from `root` user:
+```
+sudo crontab -u root -e
+```
+
+Then, remove all lines except the `@reboot` lines. For example, remove only the following lines:
+```
+15 * * * * /usr/bin/suricata-update --suricata /usr/bin/suricata --suricata-conf /etc/suricata/suricata.yaml -o /etc/suricata/rules/ && /usr/bin/suricatasc -c reload-rules /tmp/suricata-command.socket &>/dev/null
+5 0 */1 * * cd /opt/CAPEv2/utils/ && python3 community.py -waf -cr && pip3 install -U flare-capa  && systemctl restart cape-processor 2>/dev/null
+00 */1 * * * (echo authenticate ''; echo signal newnym; echo quit) | nc localhost 9051 2>/dev/null
+```
