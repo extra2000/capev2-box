@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.0.1](https://github.com/extra2000/capev2-box/compare/v3.0.0...v3.0.1) (2021-12-11)
+
+
+### Documentations
+
+* **README:** add instructions how to disable CAPEv2 cronjobs ([5934561](https://github.com/extra2000/capev2-box/commit/5934561209a2cd26d9e6bba44f5eb0d1e446a089))
+
 ## [3.0.0](https://github.com/extra2000/capev2-box/compare/v2.0.0...v3.0.0) (2021-12-07)
 
 
