@@ -458,6 +458,29 @@ sudo virsh net-start default
 ```
 
 
+## Improving Anti-Sandbox Execution
+
+Execute `sudo virsh edit win7-64-01` and set the following values:
+```
+<domain type='kvm'>
+  ...
+  <features>
+    ...
+    <hyperv>
+      ...
+      <vendor_id state='on' value='1234567890ab'/>
+      ...
+    </hyperv>
+    ...
+    <kvm>
+      <hidden state='on'/>
+    </kvm>
+  </features>
+  ...
+</domain>
+```
+
+
 ## Accessing CAPEv2 web page
 
 At this point, the CAPEv2 is ready for use. To access it's web page, visit https://capev2-box.
