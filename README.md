@@ -446,13 +446,16 @@ sudo systemctl start cape-processor.service cape-rooter.service cape-web.service
 
 ## Hardening Sandbox Security
 
-To change network from NAT to Host-only, Execute `sudo virsh net-edit default` and remove a line containing `<forward mode='nat'/>`. Then, apply changes:
+To restrict Libvirt NAT to a specific NIC (usually an NIC dedicated for dirty network), execute:
+```
+sudo virsh net-edit default
+```
+
+Then, specify `dev=NIC` into NAT forwarding mode. For example, `<forward mode='nat' dev='enp8s0'/>`. Execute the following commands to apply changes:
 ```
 sudo virsh net-destroy default
 sudo virsh net-start default
 ```
-
-However, the VM will not have Internet access.
 
 
 ## Accessing CAPEv2 web page
