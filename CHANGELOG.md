@@ -1,5 +1,13 @@
 # Changelog
 
+### [3.0.2](https://github.com/extra2000/capev2-box/compare/v3.0.1...v3.0.2) (2021-12-24)
+
+
+### Documentations
+
+* **README:** add instructions to improve anti-sandbox execution ([92e226f](https://github.com/extra2000/capev2-box/commit/92e226f0c76652cff8c65341e3830e302f500af0))
+* **README:** harden network by NATting to dirty NIC instead of using host-only network ([f8ff918](https://github.com/extra2000/capev2-box/commit/f8ff9185261834e1722cc4ef273a73e1f472eb94))
+
 ### [3.0.1](https://github.com/extra2000/capev2-box/compare/v3.0.0...v3.0.1) (2021-12-11)
 
 
